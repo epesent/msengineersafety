@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    height: auto;
+    overflow: hidden;
+}
+
+header {
+    width: 100%;
+    height: 450px;
+    background-image: url("../images/Bandera-Substation.jpg");
+    background-size: cover;
+    border-bottom: 5px solid #000000;
+}
+
+nav {
+    float: right;
+    background-image: url("../images/navbarwood.png");
+    width: 100%;
+    text-align: right;
+}
+header nav ul {
+    list-style: none;
+    float: right;
+}
+nav ul li {
+    float: right;
+    font-size: 22px;
+    margin-right: 55px;
+    padding: 15px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+ul li:hover a {
+    color: #dee70b;
+}
+ul#horizontal-list li {
+    display: inline;
+}

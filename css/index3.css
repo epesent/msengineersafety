@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 200px;
+
+    background-size: cover;
+    border-bottom: 5px solid #000000;
+}
+
+
+nav {
+    float: right;
+    background-image: url("../images/navbarwood.png");
+    width: 100%;
+    text-align: right;
+}
+header nav ul {
+    list-style: none;
+    float: right;
+}
+nav ul li {
+    float: left;
+    color: #FFFFFF;
+    font-size: 22px;
+    text-align: left;
+    margin-right: 25px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+ul li:hover a {
+    color: #b1b70a;
+}
+ul#horizontal-list li {
+    display: inline;
+}
+
+#pageImage {
+    width: 100%;
+    background: url("../images/Bandera-Substation.jpg");
+    border-bottom: 5px solid #000000;
+}
+
+#missionStatement {
+    clear: both;
+    padding: auto;
+    width: 100%;
+    background-color: #b8b8b8;
+    border-bottom: 5px solid #bab5b1;
+
+}
+
+#missionStatementText {
+    width: 70%;
+
+    margin: auto;
+    padding: 15px;
+    text-align: justify-all;
+    color: #07192e;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+#safetyTip {
+    clear: both;
+    padding: 20px;
+    width: 100%;
+    color: #07192e;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 2px;
+    margin: auto;
+    background-size: cover;
+    background-image: url("../images/mainback.jpg");
+    border-bottom: 5px solid #bab5b1;
+}
+
+#bottomBanner {
+    padding: 5px;
+    background-color: #434747;
+    color: #8c8c8c;
+    text-align: center;
+}
+
+#mbodybottom {
+    clear: both;
+    width: 100%;
+}
+#mbbcontent {
+    width: 100%;
+    margin: 0 auto 0 auto;
+}
+#mbbcontent ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#mbbcontent ul li {
+    display: inline-block;
+    margin: 0 20px 0 0;
+}
+
+#mbbcontent ul li:hover a {
+    color: #dee70b;
+}
+
+
