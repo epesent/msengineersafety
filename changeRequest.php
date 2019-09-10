@@ -71,6 +71,7 @@ try {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Safety Change Request</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
@@ -92,6 +93,7 @@ try {
                     <input type="submit" id="mail" name="mail" class="btn3" value="Send Email"/>
                 </form>
             </div><!--end mbr1content-->
+            <div style="height: 20px;">&nbsp;</div><!--spacer-->
         </div><!--end mbodyright-->
         <?php include_once "includes/inc.shlinks.php"; ?>
     </div><!--end wrapper-->

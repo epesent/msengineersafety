@@ -33,6 +33,7 @@ try {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Forgot Password</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
     <style type="text/css">
         #content {
@@ -41,6 +42,9 @@ try {
             margin: 0 auto 0 auto;
             font-size: 12px;
             font-weight: 100;
+        }
+        #logOut {
+            display: none;
         }
     </style>
 </head>

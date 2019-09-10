@@ -8,8 +8,8 @@
 require_once 'connectdb.php';
 require_once 'scripts/cronNotifySC.php';
 
-$to = "rea@texasnetworkgroup.com, stevesmith@epesent.com";
-$subject = "Cron Job for M&S Engineering Reporting";
+$to = "rea@texasnetworkgroup.com, stevesmith@epesent.com, kmeans@msengr.com";
+$subject = "30 Day Expiring Equipment";
 
 //cronNotify1.php is where the actual message is created.
 //  cronNotify1.php allows for preview of the message without actually emailing it.

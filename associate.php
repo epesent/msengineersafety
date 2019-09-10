@@ -50,6 +50,7 @@ try {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Associate</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
@@ -134,13 +135,14 @@ try {
             <?php if ($_SESSION['permissionLevel'] == 'asc') { ?>
                 <div id="mbr1Suggesstions">
                     <h2>Send us your comments or suggestions.</h2>
-                    <h4><em>(To update your qualifications or equipment please use the <a href="changeRequest.php" class="sidebar" title="Change Request">Change Request</a> form.)</em></h4><br/>
+                    <h4><em>(To update your qualifications or equipment please use the <a href="changeRequest.php" class="wrapLink" title="Change Request">Change Request</a> form.)</em></h4><br/>
                     <form action="" method="post">
                         <textarea rows="20" cols="80" id="comment" name="comment"></textarea><br/>
                         <input type="submit" id="send" name="send" class="btn3" value="Send Comment"/>
                     </form>
                 </div><!--end mbr1Suggestions-->
             <?php } ?>
+            <div style="height: 20px;">&nbsp;</div><!--spacer-->
         </div><!--end mbodyright-->
 
 

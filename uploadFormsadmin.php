@@ -15,6 +15,7 @@ require_once 'scripts/uploadFormsadminsc.php';
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Upload</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
@@ -47,7 +48,7 @@ require_once 'scripts/uploadFormsadminsc.php';
                         }
                         ?></span><br/><br/>
                 <h4>Facility Name: (for Facility Audit Report only.)</h4>
-                <input type="text" id="facility" name="facility" style="width: 30%;" placeholder="Facility Name if Facility Audit Report is used."/>
+                <input type="text" id="facility" name="facility" style="width: 50%;" placeholder="Facility Name if Facility Audit Report is used."/>
                 <span class="error" style="font-size: 10px; font-style: italic;">
                         <?php
                         if ($_POST && isset($errors['facility'])) {

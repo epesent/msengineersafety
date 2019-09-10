@@ -77,6 +77,7 @@ try {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Edit Associate</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
     <!--Script for jquery ui-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -150,7 +151,7 @@ try {
                         </tr>
                         <tr align="center">
                             <td><input type="submit" id="update" name="update" class="btn4" value="Update Associate"/></td>
-                            <td><input type="submit" id="delete" name="delete" class="btn4" onclick="confirm('Are you sure you want to delete this associate?')" value="Delete Associate"/></td>
+                            <td><input type="submit" id="delete" name="delete" class="btn4" onclick="return confirm('Are you sure you want to delete this associate?')" value="Delete Associate"/></td>
                             <td><a href="adminassociate.php?assocId=<?php echo $assocId; ?>&divisionId=<?php echo $divisionId; ?>" class="btn2">Back</a></td>
                         </tr>
                     </table>

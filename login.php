@@ -71,14 +71,15 @@ try {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>MS Engineering Safety</title>
-    <link rel="stylesheet" href="css/index3.css" />
+    <link rel="stylesheet" href="css/login.css" />
 
 </head>
 <body>
-<div>
-    <div>
+<div align="center">
+    <div class="logo">
         <a href="http://www.msengr.com/" title="M & S Engineering" target="_blank"><img src="images/logo.png" alt="M&S Engineering"/></a>
     </div><!--end mbllogoI-->
+    <br/><br/>
     <div>
         <form action="" method="post">
             <input type="text" id="userEmail" name="userEmail" placeholder="Email Address" required="required"/>
@@ -88,7 +89,7 @@ try {
                             echo $errors['email'];
                         }
                         ?>
-                    </span><br/>
+                    </span><br/><br/>
             <input type="password" id="userPassword" name="userPassword" placeholder="Password" required="required"/>
             <span class="error" style="font-size: 10px; font-style: italic;">
                         <?php
@@ -96,15 +97,12 @@ try {
                             echo $errors['userPassword'];
                         }
                         ?>
-                    </span><br/>
+                    </span><br/><br/>
             <input type="submit" id="submit" name="submit" class="btn" value="Log In"/>
             <div style="height: 5px;">&nbsp;</div><!--end spacer-->
             <a href="forgotPass.php" class="sub" style="font-style: italic; font-size: 10px;">Forgot Password?</a><br/>
         </form><br/>
 
-        <ul>
-            <li><a href="download.php" class="sidebar" title="Download Forms">Download Forms</a></li>
-        </ul>
     </div><!--end mblcontentI-->
 </div><!--end mbodyleftI-->
 </body>

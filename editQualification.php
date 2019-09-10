@@ -25,6 +25,8 @@ try {
         $dbconn->query($sqlDelete);
 
         header("location: qualifications.php");
+    } elseif (isset($_POST['cancel'])) {
+        header("location: qualifications.php");
     }
 
 } catch (Exception $e) {
@@ -39,6 +41,7 @@ try {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Edit Qualification</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
@@ -65,13 +68,13 @@ try {
                     <tr style="height: 10px;"></tr>
                     <tr>
                         <td align="center"><input type="submit" name="update" id="update" class="btn" value="Update"/></td>
-                        <td></td>
-                        <td></td>
+                        <td align="center"><input type="submit" name="delete" id="delete" class="btn" onclick="return confirm('Are you sure you want to delete this qualification from the list?');"
+                                   value="Delete"/></td>
+                        <td align="center"><input type="submit" name="cancel" id="cancel" class="btn" value="Cancel"/></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td align="center"><input type="submit" name="delete" id="delete" class="btn" onclick="return confirm('Are you sure you want to delete this qualification from the list?');"
-                                                  value="Delete"/></td>
+                        <td align="center"></td>
                         <td></td>
                         <td></td>
                         <td></td>

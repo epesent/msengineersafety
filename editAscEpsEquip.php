@@ -21,7 +21,29 @@ try {
         if (empty($_POST['epsDesc'])) {
             $errors['epsDesc'] = "Please input a description/name.";
         }
-
+        if(!$errors) {
+            //set variables
+            $epsDesc = mysqli_real_escape_string($dbconn, trim($_POST['epsDesc']));
+            if (!empty($_POST['dateIssued'])) {
+                $DI = new DateTime($_POST['dateIssued']);
+                $dateIssued = $DI->format('Y-m-d');
+            } else {
+                $dateIssued = date('Y-m-d');
+            }
+            if ($_POST['serialNo'] == 'N/A') {
+                $serialNo = '';
+            } else {
+                $serialNo = mysqli_real_escape_string($dbconn, trim($_POST['serialNo']));
+            }
+            $sqlUpdate = "UPDATE epsEquip SET epsDesc='$epsDesc', dateIssued='$dateIssued', serialNo=NULLIF('$serialNo', '') WHERE epsEquipId='$epsEquipId'";
+            $dbconn->query($sqlUpdate);
+            header("Location: adminassociate.php?assocId=$assocId&divisionId=$divisionId");
+        }
+    }
+    if (isset($_POST['delete'])) {
+        $sqlDelete = "DELETE FROM epsEquip WHERE epsEquipId='$epsEquipId'";
+        $dbconn->query($sqlDelete);
+        header("Location: adminassociate.php?assocId=$assocId&divisionId=$divisionId");
     }
 } catch (Exception $e) {
     echo 'Message: ', $e->getMessage(), "\n";
@@ -34,6 +56,7 @@ try {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Edit EPS Equipment</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -78,6 +101,13 @@ try {
                                 } else {
                                     echo $_POST['dateIssued'];
                                 } ?>"/>
+                                <span class="error">
+                                    <?php
+                                    if ($_POST && isset($errors['dateIssued'])) {
+                                        echo "<br/>" .$errors['dateIssued'];
+                                    }
+                                    ?>
+                                </span>
                             </td>
                             <td>
                                 <input type="text" id="serialNo" name="serialNo" value="<?php

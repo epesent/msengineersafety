@@ -21,6 +21,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Associate</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
     <!--Script for jquery ui for the dialog box-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -68,7 +69,7 @@
                         $max = 3;
                         while ($row = $assoc->fetch_assoc()) {
                             $count++; ?>
-                            <td><a href="adminassociate.php?assocId=<?php echo $row['userId']; ?>&divisionId=<?php echo $divisionId; ?>" class="shl"><?php echo $row['firstName'] ." " .$row['lastName']; ?></a></td>
+                            <td><a href="adminassociate.php?assocId=<?php echo $row['userId']; ?>&divisionId=<?php echo $divisionId; ?>" class="wrapLink"><?php echo $row['firstName'] ." " .$row['lastName']; ?></a></td>
                     <?php
                             if($count >= $max){
                                 //reset counter
@@ -124,7 +125,7 @@
                 <h3>Current Assigned Sub-Contractors</h3><br/>
                 <?php
                     foreach ($subcontractors as $rowSC) {
-                        echo "<a href=subContractorInfo.php?subcontractorId=" .$rowSC['subcontractorId'] ." class='shl'>"
+                        echo "<a href=subContractorInfo.php?subcontractorId=" .$rowSC['subcontractorId'] ." class='wraplink'>"
                             .$rowSC['subName'] ."</a>&nbsp;&nbsp;<a href='removesub.php?subcontractorId=" .$rowSC['subcontractorId']
                             ."&divisionId=" .$divisionId ."' class='sub' onclick=\"return confirm('Are you sure you want to delete this equipment from the list?');\">REMOVE</a><br/>";
                     }
@@ -141,8 +142,9 @@
                     </select>&nbsp;&nbsp;&nbsp;
                     <input type="submit" id="addsub" name="addsub" class="btn3" value="Assign Sub"/>
                 </form>
-                <h4><em>Enter new sub-contractors <a href="subContractors.php" class="sidebar">HERE</a></em></h4>
+                <h4><em>Enter new sub-contractors <a href="subContractors.php" class="wrapLink">HERE</a></em></h4>
             </div><!--end mbr1content-->
+            <div style="height: 20px;">&nbsp;</div><!--spacer-->
         </div><!--end mbodyright-->
         <?php include_once "includes/inc.shlinks.php"; ?>
     </div><!--end wrapper-->

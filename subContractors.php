@@ -12,6 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Associate</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
     <!--Script for jquery ui for the dialog box-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -31,6 +32,7 @@
                 $("#dialog-form").dialog("open");
             });
         });
+
     </script>
 </head>
 <body>
@@ -43,12 +45,18 @@
             <table width="40%" border="0">
                     <?php foreach ($subs AS $row) { ?>
                     <tr>
-                        <td align="left"><a href="subContractorInfo.php?subcontractorId=<?php echo $row['subcontractorId']; ?>" class="shl"><?php echo $row['subName']; ?></a></td>
+                        <td align="left"><a href="subContractorInfo.php?subcontractorId=<?php echo $row['subcontractorId']; ?>" class="wrapLink"><?php echo $row['subName']; ?></a></td>
                         <td align="left"><a href="deleteSubs.php?subcontractorId=<?php echo $row['subcontractorId']; ?>" onclick="return confirm('Are you sure you want to delete this Sub-Contractor from the list?');" class="sub">Delete</a></td>
                     <tr>
                     <?php } ?>
             </table><br>
             <button id="addSub" class="btn2">Add Sub-Contractor</button>
+            <button id="goBack" class="btn2" onclick="goBack()">Cancel</button>
+            <script>
+                function goBack() {
+                    window.history.back();
+                }
+            </script>
         </div><!--end mbr1content-->
     </div><!--end mbodyright1-->
     <?php include_once "includes/inc.shlinks.php"; ?>

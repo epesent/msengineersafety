@@ -19,7 +19,9 @@ error_reporting(E_ALL);
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Admin</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
+
 
     <!--Text Editor Script-->
 <!--    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>-->
@@ -49,6 +51,7 @@ error_reporting(E_ALL);
             });
         });
     </script>
+
 </head>
 <body>
 <?php include_once "includes/inc.topbanner.php"; ?>
@@ -67,12 +70,12 @@ error_reporting(E_ALL);
                     <?php
                         foreach ($divisions AS $row) { ?>
                             <tr>
-                                <td align="center"><a href="admindivision.php?divisionId=<?php echo $row['divisionId'] ?>" class="shl"><?php echo $row['divisionName']; ?></a></td>
-                                <td align="center"><?php echo $row['description']; ?></td>
+                                <td><a href="admindivision.php?divisionId=<?php echo $row['divisionId'] ?>" class="wrapLink"><?php echo $row['divisionName']; ?></a></td>
+                                <td><?php echo $row['description']; ?></td>
                                 <?php if (empty($row['firstName'])) { ?>
-                                    <td align="center">Brian Meuth</td>
+                                    <td>Brian Meuth</td>
                                 <?php } else { ?>
-                                <td align="center"><?php echo $row['firstName'] . " " .$row['lastName']; ?></td>
+                                <td><?php echo $row['firstName'] . " " .$row['lastName']; ?></td>
                                 <?php } ?>
                             </tr>
                     <?php    }
@@ -99,7 +102,6 @@ error_reporting(E_ALL);
                         console.error( error );
                     } );
                 </script>
-
 <!--                04JAN2018 added by robert above for text editing-->
 <!--                https://ckeditor.com/ckeditor-5-builds/download/-->
 
@@ -108,6 +110,7 @@ error_reporting(E_ALL);
                 <input type="submit" id="addnote" name="addnote" class="btn3" value="Add Tip"/><br/><br/>
                 <button type="button" onclick="window.location='safetyUploads.php'" class="btn3">Upload Safety Files</button>
             </form>
+            <div style="height: 15px;">&nbsp;</div><!--spacer-->
         </div><!--end mbr1content-->
     </div><!--end mbodyright-->
     <?php include_once "includes/inc.shlinks.php"; ?>

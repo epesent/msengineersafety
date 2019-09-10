@@ -33,6 +33,7 @@ try {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Uploaded Reports</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
@@ -97,7 +98,7 @@ try {
                             $m = explode('-', $rowR['uploadName']);
                             $month = $m[3];
                             if ($month == '01') {
-                                echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                             }
                         } echo "<br/>";
                         echo "<h3><b>February " .$year ."</b></h3><br/>";
@@ -106,7 +107,7 @@ try {
                             $m = explode('-', $rowR['uploadName']);
                             $month = $m[3];
                             if ($month == '02') {
-                                echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                             }
                         } echo "<br/>";
                         echo "<h3><b>March " .$year ."</b></h3><br/>";
@@ -115,7 +116,7 @@ try {
                             $m = explode('-', $rowR['uploadName']);
                             $month = $m[3];
                             if ($month == '03') {
-                                echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                             }
                         } echo "<br/>";
                         echo "<h3><b>April " .$year ."</b></h3><br/>";
@@ -124,7 +125,7 @@ try {
                             $m = explode('-', $rowR['uploadName']);
                             $month = $m[3];
                             if ($month == '04') {
-                                echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                             }
                         } echo "<br/>";
                         echo "<h3><b>May " .$year ."</b></h3><br/>";
@@ -133,7 +134,7 @@ try {
                             $m = explode('-', $rowR['uploadName']);
                             $month = $m[3];
                             if ($month == '05') {
-                                echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                             }
                         } echo "<br/>";
                         echo "<h3><b>June " .$year ."</b></h3><br/>";
@@ -142,7 +143,7 @@ try {
                             $m = explode('-', $rowR['uploadName']);
                             $month = $m[3];
                             if ($month == '06') {
-                                echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                             }
                         } echo "<br/>";
                         echo "<h3><b>July " .$year ."</b></h3><br/>";
@@ -151,7 +152,7 @@ try {
                             $m = explode('-', $rowR['uploadName']);
                             $month = $m[3];
                             if ($month == '07') {
-                                echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                             }
                         } echo "<br/>";
                         echo "<h3><b>August " .$year ."</b></h3><br/>";
@@ -160,7 +161,7 @@ try {
                             $m = explode('-', $rowR['uploadName']);
                             $month = $m[3];
                             if ($month == '08') {
-                                echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                             }
                         } echo "<br/>";
                         echo "<h3><b>September " .$year ."</b></h3><br/>";
@@ -169,7 +170,7 @@ try {
                             $m = explode('-', $rowR['uploadName']);
                             $month = $m[3];
                             if ($month == '09') {
-                                echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                             }
                         } echo "<br/>";
                         echo "<h3><b>October " .$year ."</b></h3><br/>";
@@ -178,7 +179,7 @@ try {
                             $m = explode('-', $rowR['uploadName']);
                             $month = $m[3];
                             if ($month == '10') {
-                                echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                             }
                         } echo "<br/>";
                         echo "<h3><b>November " .$year ."</b></h3><br/>";
@@ -187,7 +188,7 @@ try {
                             $m = explode('-', $rowR['uploadName']);
                             $month = $m[3];
                             if ($month == '11') {
-                                echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                             }
                         } echo "<br/>";
                         echo "<h3><b>December " .$year ."</b></h3><br/>";
@@ -196,7 +197,7 @@ try {
                             $m = explode('-', $rowR['uploadName']);
                             $month = $m[3];
                             if ($month == '12') {
-                                echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                             }
                         } echo "<br/>";
 
@@ -214,7 +215,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '01') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>February " .$year ."</b></h3><br/>";
@@ -223,7 +224,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '02') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>March " .$year ."</b></h3><br/>";
@@ -232,7 +233,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '03') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>April " .$year ."</b></h3><br/>";
@@ -241,7 +242,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '04') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>May " .$year ."</b></h3><br/>";
@@ -250,7 +251,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '05') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>June " .$year ."</b></h3><br/>";
@@ -259,7 +260,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '06') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>July " .$year ."</b></h3><br/>";
@@ -268,7 +269,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '07') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>August " .$year ."</b></h3><br/>";
@@ -277,7 +278,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '08') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>September " .$year ."</b></h3><br/>";
@@ -286,7 +287,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '09') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>October " .$year ."</b></h3><br/>";
@@ -295,7 +296,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '10') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>November " .$year ."</b></h3><br/>";
@@ -304,7 +305,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '11') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>December " .$year ."</b></h3><br/>";
@@ -313,7 +314,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '12') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
 
@@ -331,7 +332,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '01') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>February " .$year ."</b></h3><br/>";
@@ -340,7 +341,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '02') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>March " .$year ."</b></h3><br/>";
@@ -349,7 +350,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '03') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>April " .$year ."</b></h3><br/>";
@@ -358,7 +359,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '04') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>May " .$year ."</b></h3><br/>";
@@ -367,7 +368,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '05') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>June " .$year ."</b></h3><br/>";
@@ -376,7 +377,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '06') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>July " .$year ."</b></h3><br/>";
@@ -385,7 +386,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '07') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>August " .$year ."</b></h3><br/>";
@@ -394,7 +395,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '08') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>September " .$year ."</b></h3><br/>";
@@ -403,7 +404,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '09') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>October " .$year ."</b></h3><br/>";
@@ -412,7 +413,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '10') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>November " .$year ."</b></h3><br/>";
@@ -421,7 +422,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '11') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                             echo "<h3><b>December " .$year ."</b></h3><br/>";
@@ -430,7 +431,7 @@ try {
                                 $m = explode('-', $rowR['uploadName']);
                                 $month = $m[3];
                                 if ($month == '12') {
-                                    echo "<a href='" .$rowR['link'] ."' class='sidebar' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
+                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
                                 }
                             } echo "<br/>";
                         }

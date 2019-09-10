@@ -74,7 +74,7 @@ function getSingUser ($dbconn, $userId) {
 //qualifications by associate
 function getQualbyAsc ($dbconn, $userId) {
     $sqlQBA = "SELECT * FROM qualRecord LEFT JOIN qualifications ON qualifications.qualificationId=qualRecord.qualificationId
-               WHERE qualRecord.userId = '$userId'";
+               WHERE qualRecord.userId = '$userId' ORDER BY qualName ASC";
     $result = $dbconn->query($sqlQBA);
     return $result;
 }
@@ -88,9 +88,16 @@ function getSpecAscQual ($dbconn, $recordQualId) {
     $SAQ = mysqli_fetch_assoc($result);
     return $SAQ;
 }
+//get certificate link
+function getCertLink ($dbconn, $recordQualId) {
+    $sqlCL = "SELECT link FROM certificateUploads WHERE recordQualId = '$recordQualId'";
+    $result = $dbconn->query($sqlCL);
+    $cl = mysqli_fetch_assoc($result);
+    return $cl;
+}
 //get all qualifications
 function getQualifications ($dbconn) {
-    $sqlQual = "SELECT * FROM qualifications ORDER BY qualAbbreviation";
+    $sqlQual = "SELECT * FROM qualifications ORDER BY qualAbbreviation ASC";
     $result = $dbconn->query($sqlQual);
     return $result;
 }
@@ -163,6 +170,29 @@ function getElectricalEquip ($dbconn) {
     $result = $dbconn->query($sqlGetEE);
     return $result;
 }
+
+//get equipment list to show expiry dates for all divisions and all dates
+//Added by Robert Armstrong - Aug 23, 2018
+function getEquipForAll ($dbconn) {
+    $sqlGetEquip = "SELECT divisions.divisionName,
+                             CONCAT(contacts.firstName ,  ' ' , contacts.lastName) AS fullName,
+                             equipRecord.userId,
+                             equipment.equipName,
+                             equipment.equipType,
+                             equipRecord.serialNumber,
+                             equipRecord.issueDate,
+                             equipRecord.expDate
+                        FROM contacts
+                          LEFT JOIN equipRecord ON contacts.userId = equipRecord.userId
+                          LEFT JOIN equipment ON equipRecord.equipmentId = equipment.equipmentId
+                          LEFT JOIN divisions ON contacts.divisionId = divisions.divisionId
+                          WHERE divisionHeadId is not null
+                          ORDER BY divisionName,contacts.userId
+                    ";
+    $result = $dbconn->query($sqlGetEquip);
+    return $result;
+}
+
 
 
 //get safety tip for home page - select only last tip in list

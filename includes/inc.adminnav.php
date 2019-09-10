@@ -1,11 +1,8 @@
 <?php
 
 ?>
+<div id="mbodyleft" class="bg-dark text-light">
 
-<div id="mbodyleft">
-    <div id="mbllogo">
-        <a href="http://www.msengr.com/" title="M & S Engineering" target="_blank"><img src="images/logo.png" alt="M&S Engineering"/></a>
-    </div><!--end mbllogo-->
     <div id="mblcontent">
         <ul>
             <li><a href="dashboardadmin.php" class="sidebar" title="Dashboard">Dashboard</a></li>
@@ -16,6 +13,7 @@
             <li><a href="subContractors.php" class="sidebar" title="Sub-Contractors">Sub-Contractors</a></li>
             <li><a href="reports.php"  class="sidebar" title="Reports">Reports</a></li>
             <li><a href="documentsTips.php"  class="sidebar" title="Safety Documents">Tips/Documents</a></li>
+            <li><a href="expiringCertificationsList.php"  class="sidebar" title="Expiration List" target="_blank">Expirations</a></li>
         </ul>
     </div><!--end mblcontent-->
 </div><!--end mbodyleft-->

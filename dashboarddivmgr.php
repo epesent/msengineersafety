@@ -16,6 +16,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Associate</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
@@ -36,7 +37,7 @@
                         $max = 3;
                         while ($row = $assoc->fetch_assoc()) {
                             $count++; ?>
-                            <td><a href="associate.php?assocId=<?php echo $row['userId']; ?>&divisionId=<?php echo $divisionId; ?>" class="shl"><?php echo $row['firstName'] ." " .$row['lastName']; ?></a></td>
+                            <td><a href="associate.php?assocId=<?php echo $row['userId']; ?>&divisionId=<?php echo $divisionId; ?>" class="wrapLink"><?php echo $row['firstName'] ." " .$row['lastName']; ?></a></td>
                             <?php
                             if($count >= $max){
                                 //reset counter

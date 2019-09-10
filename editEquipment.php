@@ -37,6 +37,7 @@ try {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Edit Equipment</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
@@ -47,7 +48,7 @@ try {
         <div id="mbr1content">
             <h2>UPDATE THE EQUIPMENT</h2><br><br>
             <form action="" name="edit" id="edit" method="post">
-                <table width="50%" border="0" align="center">
+                <table width="80%" border="0" align="center">
                     <tr>
                         <th>Equipment Name</th>
                         <th>Equipment Type</th>
@@ -66,15 +67,16 @@ try {
                     </tr>
                     <tr style="height:20px;"></tr>
                     <tr>
-                        <td colspan="3" align="center"><input type="submit" name="update" id="update" class="btn3" value="Update"/></td>
+                        <td align="center"><input type="submit" name="update" id="update" class="btn2" value="Update"/></td>
+                        <td align="center"><input type="submit" name="delete" id="delete" class="btn2" onclick="return confirm('Are you sure you want to delete this equipment from the list?');"
+                                                              value="Delete"/></td>
+                        <td align="center"><input type="submit" name="cancel" id="cancel" class="btn2" value="Cancel"/></td>
+                    </tr>
+                    <tr>
 
                     </tr>
                     <tr>
-                        <td colspan="3" align="center"><input type="submit" name="delete" id="delete" class="btn3" onclick="return confirm('Are you sure you want to delete this equipment from the list?');"
-                                                  value="Delete"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" align="center"><input type="submit" name="cancel" id="cancel" class="btn3" value="Cancel"/></td>
+
                     </tr>
                 </table>
             </form>

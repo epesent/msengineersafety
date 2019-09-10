@@ -19,6 +19,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Associate</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
     <!--Script for jquery ui-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -34,7 +35,7 @@
         $(function() {
             $( "#dialog-form" ).dialog({
                 autoOpen: false,
-                height: 300,
+                height: 400,
                 width: 700,
                 modal: true
             });
@@ -92,9 +93,10 @@
         <div id="mbodyright1">
             <div id="mbr1content">
                 <h3>Associate Name: <?php echo $assoc['firstName'] ." " .$assoc['lastName'];?>&nbsp;&nbsp;&nbsp;
-                    ID#: <?php echo $assoc['last4SSN']; ?><br/>
+                    ID#: <?php echo $assoc['last4SSN']; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="admindivision.php?divisionId=<?php echo $divisionId; ?>" class="wrapLink">Back to Division</a> <br/>
                     Assigned Division: <?php echo $division['divisionName'];?></h3>
-                    <a href='editAssoc.php?assocId=<?php echo $assocId; ?>&divisionId=<?php echo $divisionId; ?>' class="sidebar dialOpen">Update/Delete</a>
+                    <a href='editAssoc.php?assocId=<?php echo $assocId; ?>&divisionId=<?php echo $divisionId; ?>' class="wrapLink dialOpen">Update/Delete</a>
                 <p>&nbsp;</p>
                 <h2>Associate Qualifications</h2>
                 <table width="100%" border="0">
@@ -116,22 +118,27 @@
                             $formatdueDate = date('m/d/Y', $dueDate);
                             $testDD = date('Y-m-d', $dueDate);
 //                            echo $rowQ['dueDate'] ." test". $testDD;
-
+                            $recordQualId = $rowQ['recordQualId'];
+                            $certLink = getCertLink ($dbconn, $recordQualId);
+                            $count = mysqli_num_rows($certLink);
                             ?>
-
                             <tr>
-                                <td align="center"><?php echo $rowQ['qualName'];?></td>
-                                <td align="center"><?php echo $rowQ['qualAbbreviation']; ?></td>
-                                <td align="center"><?php echo $rowQ['qualMethod']; ?></td>
-                                <td align="center"><?php echo $formatqualDate; ?></td>
+                                <?php if (!empty($certLink)) { ?>
+                                    <td><a href="<?php echo $certLink['link']; ?>" target="_blank"><?php echo $rowQ['qualName'];?></a></td>
+                                <?php } else { ?>
+                                    <td><?php echo $rowQ['qualName'];?></td>
+                                <?php }?>
+                                <td><?php echo $rowQ['qualAbbreviation']; ?></td>
+                                <td><?php echo $rowQ['qualMethod']; ?></td>
+                                <td><?php echo $formatqualDate; ?></td>
                                 <?php
                                 $linitDate = date('Y-m-d', strtotime("+30 days"));
                                 if(strtotime($testDD) < strtotime($linitDate)) { ?>
-                                    <td align="center" class="error"><?php echo $formatdueDate; ?></td>
+                                    <td class="error"><?php echo $formatdueDate; ?></td>
                                 <?php } else { ?>
-                                    <td align="center"><?php echo $formatdueDate; ?></td>
+                                    <td><?php echo $formatdueDate; ?></td>
                                 <?php } ?>
-                                <td><a href='editAscQual.php?recordQualId=<?php echo $rowQ['recordQualId']; ?>' class="sidebar dialOpen">Update/Delete</a></td>
+                                <td><a href='editAscQual.php?recordQualId=<?php echo $rowQ['recordQualId']; ?>' class="wrapLink dialOpen">Update/Delete</a></td>
                             </tr>
                     <?php    } ?>
                 </table><br/>
@@ -139,7 +146,7 @@
                 <div style="height: 40px; border-top: solid 2px #000000"></div><!--spacer-->
                 <h2>Equipment Issued</h2><br/>
 
-                <h3>Employee Safety Equipment - EPS Equipment</h3>
+                <h3>Personal Protective Equipment - PPE</h3>
                 <table width="90%" border="0">
                     <tr>
                         <th>Equipment Name</th>
@@ -151,15 +158,15 @@
                         $dateIssued = strtotime($rowEps['dateIssued']);
                         $formatID = date('m/d/Y', $dateIssued); ?>
                         <tr>
-                            <td align="center"><?php echo $rowEps['epsDesc']; ?></td>
-                            <td align="center"><?php echo $formatID; ?></td>
-                            <td align="center"><?php echo (!empty($rowEps['serialNo'])?$rowEps['serialNo']:"N/A"); ?></td>
-                            <td align="center"><a href="editAscEpsEquip.php?epsEquipId=<?php echo $rowEps['epsEquipId']; ?>&divisionId=<?php echo $divisionId; ?>" class="sidebar">Update/Delete</a></td>
+                            <td><?php echo $rowEps['epsDesc']; ?></td>
+                            <td><?php echo $formatID; ?></td>
+                            <td><?php echo (!empty($rowEps['serialNo'])?$rowEps['serialNo']:"N/A"); ?></td>
+                            <td><a href="editAscEpsEquip.php?epsEquipId=<?php echo $rowEps['epsEquipId']; ?>&divisionId=<?php echo $divisionId; ?>" class="wrapLink">Update/Delete</a></td>
                         </tr>
                     <?php } ?>
 
                 </table><br/>
-                <button id="addEps" class="btn3">Add EPS Equipment</button><br/><br/>
+                <button id="addEps" class="btn3">Add PPE</button><br/><br/>
                 <h3>Specialized Equipment</h3>
                 <table width="90%" border="0">
                     <tr>
@@ -177,17 +184,17 @@
                         $formatExpDate = date('m/d/Y', $expDate);
                         ?>
                         <tr>
-                            <td align="center"><?php echo $rowE['equipName']; ?></td>
-                            <td align="center"><?php echo $rowE['serialNumber']; ?></td>
-                            <td align="center"><?php echo $formatIssueDate; ?></td>
+                            <td><?php echo $rowE['equipName']; ?></td>
+                            <td><?php echo $rowE['serialNumber']; ?></td>
+                            <td><?php echo $formatIssueDate; ?></td>
                             <?php
                             $expires = date('Y-m-d', strtotime("+30 days"));
                             if (strtotime($rowE['expDate']) < strtotime($expires)) { ?>
-                                <td align="center" class="error"><?php echo $formatExpDate; ?></td>
+                                <td class="error"><?php echo $formatExpDate; ?></td>
                             <?php } else { ?>
-                                <td align="center"><?php echo $formatExpDate; ?></td>
+                                <td><?php echo $formatExpDate; ?></td>
                             <?php    } ?>
-                            <td align="center"><a href="editAscEquip.php?equipRecordId=<?php echo $rowE['equipRecordId']; ?>&divisionId=<?php echo $divisionId; ?>" class="sidebar">Update/Delete</a></td>
+                            <td><a href="editAscEquip.php?equipRecordId=<?php echo $rowE['equipRecordId']; ?>&divisionId=<?php echo $divisionId; ?>" class="wrapLink">Update/Delete</a></td>
                         </tr>
                     <?php } ?>
                 </table><br/>
@@ -224,6 +231,7 @@
                 ?>
             </select><br/><br/>
             <input type="text" id="qualDate" name="qualDate" class="pickDate modInput" placeholder="Date Qualified"/><br/><br/>
+            Upload Certificate <input type="checkbox" name="certificate" value="upload"/><br/><br/>
             <input type="submit" id="addQ" name="addQ" class="btn" value="Add Qualification"/>
         </form>
     </div><!--end dialog-form-->
@@ -251,10 +259,22 @@
             <input type="submit" id="addN" name="addN" class="btn" value="Add Note"/>
         </form>
     </div><!--end dialog-form3-->
-    <div id="dialog-form4" title="Add EPS Equipment">
+    <div id="dialog-form4" title="Add PPE Equipment">
         <br/>
         <form action="addEpsEquip.php?assocId=<?php echo $assocId; ?>&divisionId=<?php echo $divisionId; ?>" method="post" id="addEpsEquip">
-            <input type="text" id="epsDesc" name="epsDesc" placeholder="Equipment Description" required="required"/><br/><br/>
+            <select id="epsDesc" name="epsDesc">
+                <option value="">Select the equipment</option>
+                <option value="Hard Hat">Hard Hat</option>
+                <option value="ANSI 2-87 Safety Glasses">ANSI 2-87 Safety Glasses</option>
+                <option value="Safety Vest">Safety Vest</option>
+                <option value="FR Jeans">FR Jeans</option>
+                <option value="FR Shirt">FR Shirt</option>
+                <option value="Safety Footwear">Safety Footwear</option>
+            </select><br/><br/>
+
+<!--            <input type="text" id="epsDesc" name="epsDesc" placeholder="Equipment Description" required="required"/><br/><br/>-->
+
+
             <input type="text" id="dateIssued" name="dateIssued" class="pickDate modInput" placeholder="Date Issued"/><br/><br/>
             <input type="text" id="serialNo" name="serialNo" class="modInput" placeholder="Serial No (if needed)"/><br/><br/>
             <input type="submit" id="epsSubmit" name="epsSubmit" class="btn" value="Add Equipment"/>

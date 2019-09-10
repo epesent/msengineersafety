@@ -11,6 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Associate</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
     <!--Script for jquery ui for the dialog box-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -50,16 +51,17 @@
                     <?php
                     foreach ($allQual as $rowQ) { ?>
                         <tr>
-                            <td align="left"><?php echo $rowQ['qualName']; ?></td>
-                            <td align="center"><?php echo $rowQ['qualAbbreviation']; ?></td>
-                            <td align="center"><?php echo $rowQ['qualMethod']; ?></td>
-                            <td align="center"><?php echo $rowQ['qualRequireInterval']; ?></td>
-                            <td align="center"><a href="editQualification.php?qualificationId=<?php echo $rowQ['qualificationId']; ?>" class="sidebar">Edit/Delete</a></td>
+                            <td><?php echo $rowQ['qualName']; ?></td>
+                            <td><?php echo $rowQ['qualAbbreviation']; ?></td>
+                            <td><?php echo $rowQ['qualMethod']; ?></td>
+                            <td><?php echo $rowQ['qualRequireInterval']; ?></td>
+                            <td><a href="editQualification.php?qualificationId=<?php echo $rowQ['qualificationId']; ?>" class="wrapLink">Edit/Delete</a></td>
                         </tr>
                     <?php    } ?>
                 </table><br/>
                 <button id="addQualification" class="btn3">Add Qualification</button>
             </div><!--end mbr1content-->
+            <div style="height: 20px;">&nbsp;</div><!--spacer-->
         </div><!--end mbodyright1-->
         <?php include_once "includes/inc.shlinks.php"; ?>
     </div><!--end wrapper-->

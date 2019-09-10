@@ -12,6 +12,7 @@ error_reporting(E_ALL);
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>M&S Engineering Associate</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
     <!--Script for jquery ui for the dialog box-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -52,7 +53,7 @@ error_reporting(E_ALL);
                             <td align="center"><?php echo $row['equipName']; ?></td>
                             <td align="center"><?php echo ucfirst($row['equipType']); ?></td>
                             <td align="center"><?php echo $row['dueDateInterval'] ." month(s)";?></td>
-                            <td align="center"><a href="editEquipment.php?equipmentId=<?php echo $row['equipmentId']; ?>" class="sidebar">Edit/Delete</a></td>
+                            <td align="center"><a href="editEquipment.php?equipmentId=<?php echo $row['equipmentId']; ?>" class="wrapLink">Edit/Delete</a></td>
                         </tr>
                     <?php } ?>
                 </table><br/>
@@ -69,7 +70,7 @@ error_reporting(E_ALL);
             <input type="text" id="equipName" name="equipName" class="modInput" required="required" placeholder="Equipment Name"/><br/><br/>
             <label for="equipType">Equipment Type:</label><br/>
             <select name="equipType" id="equipType">
-                <option value="eletrical">Electrical</option>
+                <option value="electrical">Electrical</option>
                 <option value="other">Other</option>
             </select><br/><br/>
             <label for="dueDateInterval">Service / Expiration Interval (mos.):</label><br/>

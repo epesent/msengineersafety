@@ -2,10 +2,8 @@
 
 ?>
 
-<div id="mbodyleft">
-    <div id="mbllogo">
-        <a href="http://www.msengr.com/" title="M & S Engineering" target="_blank"><img src="images/logo.png" alt="M&S Engineering"/></a>
-    </div><!--end mbllogo-->
+<div id="mbodyleft" class="bg-dark text-light">
+
     <div id="mblcontent">
         <ul>
             <li><a href="dashboarddivmgr.php" class="sidebar" title="Dashboard">Dashboard</a></li>

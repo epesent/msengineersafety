@@ -1,12 +1,12 @@
 <?php
-    if (isset($_GET['logout'])) {
-        session_destroy();
-    }
+if (isset($_GET['logout'])) {
+    session_destroy();
+}
 
-    //start session
-    session_start();
-    require_once 'connectdb.php';
-    $safetyTip = getSafetyTip ($dbconn);
+//start session
+session_start();
+require_once 'connectdb.php';
+$safetyTip = getSafetyTip ($dbconn);
 
 try {
 
@@ -65,100 +65,76 @@ try {
 }
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!DOCTYPE html>
+
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>MS Engineering Safety</title>
-    <link rel="stylesheet" href="css/index.css" />
+    <title>M & S Engineering Safety and Compliance Database</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="css/layout.css" rel="stylesheet" type="text/css" media="all">
 
 </head>
 <body>
-    <?php include_once "includes/inc.topbanner.php"; ?>
-    <div id="wrapper">
-        <div id="mbodyleftI">
-            <div id="mbllogoI">
-                <a href="http://www.msengr.com/" title="M & S Engineering" target="_blank"><img src="images/logo.png" alt="M&S Engineering"/></a>
-            </div><!--end mbllogoI-->
-            <div id="mblcontentI">
-                <form action="" method="post">
-                    <input type="text" id="userEmail" name="userEmail" placeholder="Email Address" required="required"/>
-                    <span class="error" style="font-size: 10px; font-style: italic;">
-                        <?php
-                        if ($_POST && isset($errors['email'])) {
-                            echo $errors['email'];
-                        }
-                        ?>
-                    </span><br/>
-                    <input type="password" id="userPassword" name="userPassword" placeholder="Password" required="required"/>
-                    <span class="error" style="font-size: 10px; font-style: italic;">
-                        <?php
-                        if ($_POST && isset($errors['userPassword'])) {
-                            echo $errors['userPassword'];
-                        }
-                        ?>
-                    </span><br/>
-                    <input type="submit" id="submit" name="submit" class="btn" value="Log In"/>
-                    <div style="height: 5px;">&nbsp;</div><!--end spacer-->
-                    <a href="forgotPass.php" class="sub" style="font-style: italic; font-size: 10px;">Forgot Password?</a><br/>
-                </form><br/>
 
-                <ul>
-                    <li><a href="download.php" class="sidebar" title="Download Forms">Download Forms</a></li>
-                </ul>
-                <div id="mblPicI"><img src="images/SafetyEverybody.png" alt="M&S Engineering"/></div><!--end mblPicI-->
-            </div><!--end mblcontentI-->
-        </div><!--end mbodyleftI-->
+<!-- Top Background Image Wrapper -->
+<div class="bgded overlay" style="background-image:url('images/Grande-Tyler.jpg');">
 
-<!--MISSION STATEMENT ON THE TOP MIDDLE-->
-        <div id="mbodycenter">
-            <div id="mbc1content">
-                <div style="height: 100px;"></div><!--spacer-->
-                <h1 align="center">SAFETY MISSION STATEMENT</h1><br/>
-                <h3 align="justify">M&S Engineering is dedicated to protecting the safety and health of its employees. We have established a safety and health program to prevent injuries
-                   and illnesses due to hazards. Employee involvement at all levels of the company is critical for us to be successful in this effort and to create an effective safety culture.<br/><br/>
-                   Our goal is to promote a pro-active environment that will effectively identify and manage risk through <em>recognition, evaluation, and education.</em> We strive to remain in compliance
-                   with federal, state, and local safety and health regulations as well as the latest professional practices to ensure every worker goes home safely.<br/><br/>
-                   <b>Ken Means - Safety Manager</b>
-                </h3>
+    <div class="wrapper row1">
+        <header id="header" class="hoc clear">
 
-                <div id="spacer1" style="height: 80px;"></div><!--spacer-->
+            <div id="logo" align="center">
+                <h1><a href="index.html"><img src="images/logo.png" width="100"> </a></h1>
+            </div>
 
-            </div><!--end mbc1content-->
+        </header>
+    </div>
 
-        </div><!--end mbodycenter-->
+    <div id="pageintro" class="hoc clear">
 
-<!--STAR LOGO AND IMAGES ON THE RIGHT SIDE-->
-        <div id="mbodyright2">
-            <div id="mbr2logo">
-                <a href="http://www.msengr.com/" title="M & S Engineering" target="_blank"><img src="images/logo.png" alt="M&S Engineering"/></a>
-            </div><!--end mbr2logo-->
-            <div style="height: 100px;"></div><!--spacer-->
-            <div id="mbr2Pics"><img src="images/substation.png" alt="M&S Engineering"/></div><!--end mbr2Pics-->
-            <div id="mbr2Pics"><img src="images/Bandera-Substation.jpg" alt="M&S Engineering"/></div><!--end mbr2Pics-->
+        <article class="introtxt">
+            <h2 class="heading">M&S Engineering</h2>
+            <p>Safety and Compliance Database</p>
+            <footer>
+                <a class="btn inverse" href="login.php">Login</a>
+                <a class="btn inverse" href="download.php">Download Forms</a>
+            </footer>
+        </article>
+        <div class="clear"></div>
+    </div>
 
-            <div id="spacer1" style="height: 80px;"></div><!--spacer-->
-        </div><!--end mbodyright2-->
+</div>
+<!-- End Top Background Image Wrapper -->
 
-<!--SAFETY MESSAGE TEXT BOX AND IMAGES-->
-        <div style=clear:both;>
-            <div id="mbcST">
-                <div id="mbcSTPicL">
-                    <div id="mbcSTImages"><img src="images/safetyfirst.png"/></div><!--end mbcSTImages-->
-                </div><!--end mbcSTPicL-->
-                <div id="mbcSTTitle"><h1 align="center">SAFETY TOPIC OF THE WEEK</h1></div><!--end mbcSTTitle-->
-                <div id="mbcSTPicL">
-                    <div id="mbcSTImages"><img src="images/safetyfirst.png"/><p></p></div><!--end mbcSTImages-->
-                </div><!--end mbcSTPicL-->
-                <h4 style="clear:both;" align="center">
-                    <?php echo $safetyTip['tipContent'] ?>
-                </h4>
-            </div><!--end mbcST-->
+<div class="wrapper row3">
+    <main class="hoc container clear">
+        <!-- main body -->
+        <div class="group center">
+            <p><h2><i>SAFETY MISSION STATEMENT</i></h2></p>
+            M&S Engineering is dedicated to protecting the safety and health of its employees. We have established a safety and health program to prevent injuries
+            and illnesses due to hazards. Employee involvement at all levels of the company is critical for us to be successful in this effort and to create an effective safety culture.<br/><br/>
+            Our goal is to promote a pro-active environment that will effectively identify and manage risk through <em>recognition, evaluation, and education.</em> We strive to remain in compliance
+            with federal, state, and local safety and health regulations as well as the latest professional practices to ensure every worker goes home safely.<br/><br/>
+            <b><i>Ken Means - Safety Manager</i></b>
         </div>
+        <!-- / main body -->
+        <div class="clear"></div>
+    </main>
+</div>
 
-        <?php include_once "includes/inc.shlinks.php"; ?>
-    </div><!--end wrapper-->
-    <?php include_once "includes/inc.botbanner.php"; ?>
+<div class="wrapper bgded overlay coloured" style="background-image:url('images/Salado-Hutto.jpg');">
+    <div class="hoc container clear">
+        <article id="safetytip" class="center">
+            <p><b><h2><u>Safety Tailgate Topics</u></h2></b></p>
+            <p><?php echo $safetyTip['tipContent'] ?></p>
+        </article>
+        <p></p>
+    </div>
+
+</div>
+
+<?php include 'includes/inc.botbannerIndex.php';?>
+
 </body>
 </html>

@@ -47,16 +47,18 @@ try {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>MS Engineering Safety Reset Password</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" />
-
+    <style type="text/css">
+        #logOut {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <?php include_once "includes/inc.topbanner.php"; ?>
     <div id="wrapper">
-        <div id="mbodyleft">
-            <div id="mbllogo">
-                <a href="http://www.msengr.com/" title="M & S Engineering" target="_blank"><img src="images/logo.png" alt="M&S Engineering"/></a>
-            </div><!--end mbllogo-->
+        <div id="mbodyleft" class="bg-dark text-light">
             <div id="mblcontent">
                 <ul>
                     <li><a href="download.php" class="sidebar" title="Download Forms">Download Forms</a></li>
