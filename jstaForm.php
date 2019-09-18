@@ -1,9 +1,10 @@
 <?php
     session_start();
-//    $permissionLevel = $_SESSION['permissionLevel'];
-//    if (empty($permissionLevel)) {
-//        header("location:index.php");
-//    }
+    $permissionLevel = $_SESSION['permissionLevel'];
+    if (empty($permissionLevel)) {
+        header("location:index.php");
+    }
+
     $userId = $_SESSION['userId'];
     require_once 'connectdb.php';
     $assoc = getAsc ($dbconn, $userId);
@@ -12,10 +13,76 @@
 try {
     if (isset($_POST['submit'])) {
         //set variables
-
+        $pqdate = new DateTime($_POST['jobDate']);
+        $jobDate = $pqdate->format('Y-m-d');
+        $customer = mysqli_real_escape_string($dbconn, trim($_POST['customer']));
+        $jobNo = mysqli_real_escape_string($dbconn, trim($_POST['jobNo']));
+        $crewLeader = mysqli_real_escape_string($dbconn, trim($_POST['crewLeader']));
+        $currentWeather = mysqli_real_escape_string($dbconn, trim($_POST['currentWeather']));
+        $scopeOfWork = mysqli_real_escape_string($dbconn, trim($_POST['scopeOfWork']));
+        if (!empty($_POST['permitRequired'])) {$permitRequired = $_POST['permitRequired'];} else {$permitRequired = 0;}
+        $permitType = mysqli_real_escape_string($dbconn, trim($_POST['permitType']));
+        if (!empty($_POST['fire'])) {$fire = $_POST['fire'];} else {$fire = 0;}
+        if (!empty($_POST['noise'])) {$noise = $_POST['noise'];} else {$noise = 0;}
+        if (!empty($_POST['energizedCircuits'])) {$energizedCircuits = $_POST['energizedCircuits'];} else {$energizedCircuits = 0;}
+        if (!empty($_POST['electrical'])) {$electrical = $_POST['electrical'];} else {$electrical = 0;}
+        if (!empty($_POST['weather'])) {$weather = $_POST['weather'];} else {$weather = 0;}
+        if (!empty($_POST['minimumDistance'])) {$minimumDistance = $_POST['minimumDistance'];} else {$minimumDistance = 0;}
+        if (!empty($_POST['mechanical'])) {$mechanical = $_POST['mechanical'];} else {$mechanical = 0;}
+        if (!empty($_POST['slips_trips_falls'])) {$slips_trips_falls = $_POST['slips_trips_falls'];} else {$slips_trips_falls = 0;}
+        if (!empty($_POST['lead'])) {$lead = $_POST['lead'];} else {$lead = 0;}
+        if (!empty($_POST['chemical'])) {$chemical = $_POST['chemical'];} else {$chemical = 0;}
+        if (!empty($_POST['congestedArea'])) {$congestedArea = $_POST['congestedArea'];} else {$congestedArea = 0;}
+        if (!empty($_POST['othersInArea'])) {$othersInArea = $_POST['othersInArea'];} else {$othersInArea = 0;}
+        if (!empty($_POST['hardHat'])) {$hardHat = $_POST['hardHat'];} else {$hardHat = 0;}
+        if (!empty($_POST['frc'])) {$frc = $_POST['frc'];} else {$frc = 0;}
+        if (!empty($_POST['safetyGlasses'])) {$safetyGlasses = $_POST['safetyGlasses'];} else {$safetyGlasses = 0;}
+        if (!empty($_POST['safetyToeShoes'])) {$safetyToeShoes = $_POST['safetyToeShoes'];} else {$safetyToeShoes = 0;}
+        if (!empty($_POST['monogoggles'])) {$monogoggles = $_POST['monogoggles'];} else {$monogoggles = 0;}
+        if (!empty($_POST['safetyHarness'])) {$safetyHarness = $_POST['safetyHarness'];} else {$safetyHarness = 0;}
+        if (!empty($_POST['faceShields'])) {$faceShields = $_POST['faceShields'];} else {$faceShields = 0;}
+        if (!empty($_POST['hotStick'])) {$hotStick = $_POST['hotStick'];} else {$hotStick = 0;}
+        if (!empty($_POST['hearingProtection'])) {$hearingProtection = $_POST['hearingProtection'];} else {$hearingProtection = 0;}
+        if (!empty($_POST['grounds'])) {$grounds = $_POST['grounds'];} else {$grounds = 0;}
+        if (!empty($_POST['fireExtinguisher'])) {$fireExtinguisher = $_POST['fireExtinguisher'];} else {$fireExtinguisher = 0;}
+        if (!empty($_POST['rubberGloves'])) {$rubberGloves = $_POST['rubberGloves'];} else {$rubberGloves = 0;}
+        if (!empty($_POST['barricades_signs'])) {$barricades_signs = $_POST['barricades_signs'];} else {$barricades_signs = 0;}
+        if (!empty($_POST['workGloves'])) {$workGloves = $_POST['workGloves'];} else {$workGloves = 0;}
+        if (!empty($_POST['safetyVest'])) {$safetyVest = $_POST['safetyVest'];} else {$safetyVest = 0;}
+        if (!empty($_POST['shirtTuckedIn'])) {$shirtTuckedIn = $_POST['shirtTuckedIn'];} else {$shirtTuckedIn = 0;}
+        if (!empty($_POST['noStains'])) {$noStains = $_POST['noStains'];} else {$noStains = 0;}
+        if (!empty($_POST['noTears_holes_frayedEdges'])) {$noTears_holes_frayedEdges = $_POST['noTears_holes_frayedEdges'];} else {$noTears_holes_frayedEdges = 0;}
+        if (!empty($_POST['noContactWithBleach'])) {$noContactWithBleach = $_POST['noContactWithBleach'];} else {$noContactWithBleach = 0;}
+        if (!empty($_POST['noContactWithDEET'])) {$noContactWithDEET = $_POST['noContactWithDEET'];} else {$noContactWithDEET = 0;}
+        $inspectionOfTools = mysqli_real_escape_string($dbconn, trim($_POST['inspectionOfTools']));
+        $housekeeping = mysqli_real_escape_string($dbconn, trim($_POST['housekeeping']));
+        $medicalServices = mysqli_real_escape_string($dbconn, trim($_POST['medicalServices']));
+        $attendeeName1 = mysqli_real_escape_string($dbconn, trim($_POST['attendeeName1']));
+        $attendeeName2 = mysqli_real_escape_string($dbconn, trim($_POST['attendeeName2']));
+        $attendeeName3 = mysqli_real_escape_string($dbconn, trim($_POST['attendeeName3']));
+        $attendeeName4 = mysqli_real_escape_string($dbconn, trim($_POST['attendeeName4']));
+        $attendeeName5 = mysqli_real_escape_string($dbconn, trim($_POST['attendeeName5']));
+        $attendeeName6 = mysqli_real_escape_string($dbconn, trim($_POST['attendeeName6']));
+        $attendeeName7 = mysqli_real_escape_string($dbconn, trim($_POST['attendeeName7']));
+        $attendeeName8 = mysqli_real_escape_string($dbconn, trim($_POST['attendeeName8']));
+        $attendeeName9 = mysqli_real_escape_string($dbconn, trim($_POST['attendeeName9']));
+        $attendeeName10 = mysqli_real_escape_string($dbconn, trim($_POST['attendeeName10']));
+        $attendeeName11 = mysqli_real_escape_string($dbconn, trim($_POST['attendeeName11']));
+        $attendeeName12 = mysqli_real_escape_string($dbconn, trim($_POST['attendeeName12']));
 
         //insert to db
-        $sqlInsert= "";
+        $sqlInsert= "INSERT INTO jsaTaskAnalysis (divisionId, userId, jobDate, customer, jobNo, crewLeader, currentWeather, scopeOfWork, permitRequired, permitType, fire, noise, energizedCircuits, 
+                    electrical, weather, minimumDistance, mechanical, slips_trips_falls, lead, chemical, congestedArea, othersInArea, hardHat, frc, safetyGlasses, safetyToeShoes, monogoggles, 
+                    safetyHarness, faceShields, hotStick, hearingProtection, grounds, fireExtinguisher, rubberGloves, barricades_signs, workGloves, safetyVest, shirtTuckedIn, noStains, 
+                    noTears_holes_frayedEdges, noContactWithBleach, noContactWithDEET, inspectionOfTools, housekeeping, medicalServices, attendeeName1, attendeeName2, attendeeName3, attendeeName4, 
+                    attendeeName5, attendeeName6, attendeeName7, attendeeName8, attendeeName9, attendeeName10, attendeeName11, attendeeName12) VALUES ('$divisionId', '$userId', NULLIF ('$jobDate', ''), 
+                    NULLIF ('$customer', ''), NULLIF ('$jobNo', ''), NULLIF ('$crewLeader', ''), NULLIF ('$currentWeather', ''), NULLIF ('$scopeOfWork', ''), '$permitRequired', NULLIF ('$permitType', ''),
+                    '$fire', '$noise', '$energizedCircuits', '$electrical', '$weather', '$minimumDistance', '$mechanical', '$slips_trips_falls', '$lead', '$chemical', '$congestedArea', '$othersInArea', 
+                    '$hardHat', '$frc', '$safetyGlasses', '$safetyToeShoes', '$monogoggles', '$safetyHarness', '$faceShields', '$hotStick', '$hearingProtection', '$grounds', '$fireExtinguisher', 
+                    '$rubberGloves', '$barricades_signs', '$workGloves', '$safetyVest', '$shirtTuckedIn', '$noStains', '$noTears_holes_frayedEdges', '$noContactWithBleach', '$noContactWithDEET', 
+                    NULLIF ('$inspectionOfTools', ''), NULLIF ('$housekeeping', ''), NULLIF ('$medicalServices', ''), NULLIF ('$attendeeName1', ''), NULLIF ('$attendeeName2', ''), 
+                    NULLIF ('$attendeeName3', ''), NULLIF ('$attendeeName4', ''), NULLIF ('$attendeeName5', ''), NULLIF ('$attendeeName6', ''), NULLIF ('$attendeeName7', ''), NULLIF ('$attendeeName8', ''), 
+                    NULLIF ('$attendeeName9', ''), NULLIF ('$attendeeName10', ''), NULLIF ('$attendeeName11', ''), NULLIF ('$attendeeName12', ''))";
         $dbconn->query($sqlInsert);
 
         if ($_SESSION['permissionLevel'] == 'mgr') {
@@ -105,8 +172,8 @@ try {
             <form action="" method="post">
                 <div id="generalInfo" class="form-group">
                     <div class="form-row mb-md-3">
-                        <label for="date" class="col-md-1 form-control-label ml-md-5">Date:</label>
-                        <input type="text" id="date" name="date" class="col-md-2 form-control pickDate"/>
+                        <label for="jobDate" class="col-md-1 form-control-label ml-md-5">Date:</label>
+                        <input type="text" id="jobDate" name="jobDate" class="col-md-2 form-control pickDate"/>
                         <label for="customer" class="col-md-2 form-control-label text-md-right">Customer:</label>
                         <input type="text" id="customer" name="customer" class="col-md-3 form-control"/>
                         <label for="jobNo" class="col-md-2 form-control-label text-md-right">Job No.:</label>
@@ -405,28 +472,28 @@ try {
                 </div><!--end row--->
                 <div id="attendees" class="form-group">
                     <div class="form-row justify-content-md-around mb-md-1">
-                        <input type="text" name="attendee1" id="attendee1" class="col-md-4" placeholder="Attendee Name"/>
-                        <input type="text" name="attendee2" id="attendee2" class="col-md-4" placeholder="Attendee Name"/>
+                        <input type="text" name="attendeeName1" id="attendeeName1" class="col-md-4" placeholder="Attendee Name"/>
+                        <input type="text" name="attendeeName2" id="attendeeName2" class="col-md-4" placeholder="Attendee Name"/>
                     </div><!--end form row-->
                     <div class="form-row justify-content-md-around mb-md-1">
-                        <input type="text" name="attendee3" id="attendee3" class="col-md-4" placeholder="Attendee Name"/>
-                        <input type="text" name="attendee4" id="attendee4" class="col-md-4" placeholder="Attendee Name"/>
+                        <input type="text" name="attendeeName3" id="attendeeName3" class="col-md-4" placeholder="Attendee Name"/>
+                        <input type="text" name="attendeeName4" id="attendeeName4" class="col-md-4" placeholder="Attendee Name"/>
                     </div><!--end form row-->
                     <div class="form-row justify-content-md-around mb-md-1">
-                        <input type="text" name="attendee5" id="attendee5" class="col-md-4" placeholder="Attendee Name"/>
-                        <input type="text" name="attendee6" id="attendee6" class="col-md-4" placeholder="Attendee Name"/>
+                        <input type="text" name="attendeeName5" id="attendeeName5" class="col-md-4" placeholder="Attendee Name"/>
+                        <input type="text" name="attendeeName6" id="attendeeName6" class="col-md-4" placeholder="Attendee Name"/>
                     </div><!--end form row-->
                     <div class="form-row justify-content-md-around mb-md-1">
-                        <input type="text" name="attendee7" id="attendee7" class="col-md-4" placeholder="Attendee Name"/>
-                        <input type="text" name="attendee8" id="attendee8" class="col-md-4" placeholder="Attendee Name"/>
+                        <input type="text" name="attendeeName7" id="attendeeName7" class="col-md-4" placeholder="Attendee Name"/>
+                        <input type="text" name="attendeeName8" id="attendeeName8" class="col-md-4" placeholder="Attendee Name"/>
                     </div><!--end form row-->
                     <div class="form-row justify-content-md-around mb-md-1">
-                        <input type="text" name="attendee9" id="attendee9" class="col-md-4" placeholder="Attendee Name"/>
-                        <input type="text" name="attendee10" id="attendee10" class="col-md-4" placeholder="Attendee Name"/>
+                        <input type="text" name="attendeeName9" id="attendeeName9" class="col-md-4" placeholder="Attendee Name"/>
+                        <input type="text" name="attendeeName10" id="attendeeName10" class="col-md-4" placeholder="Attendee Name"/>
                     </div><!--end form row-->
                     <div class="form-row justify-content-md-around mb-md-1">
-                        <input type="text" name="attendee11" id="attendee11" class="col-md-4" placeholder="Attendee Name"/>
-                        <input type="text" name="attendee12" id="attendee12" class="col-md-4" placeholder="Attendee Name"/>
+                        <input type="text" name="attendeeName11" id="attendeeName11" class="col-md-4" placeholder="Attendee Name"/>
+                        <input type="text" name="attendeeName12" id="attendeeName12" class="col-md-4" placeholder="Attendee Name"/>
                     </div><!--end form row-->
                 </div><!--end form group attendees-->
                 <div class="row mt-md-5 justify-content-md-center">

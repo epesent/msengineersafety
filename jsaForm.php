@@ -1,26 +1,20 @@
 <?php
     session_start();
-//    $permissionLevel = $_SESSION['permissionLevel'];
-//    if (empty($permissionLevel)) {
-//        header("location:index.php");
-//    }
-//    $userId = $_SESSION['userId'];
-$userId='9901';
+    $permissionLevel = $_SESSION['permissionLevel'];
+    if (empty($permissionLevel)) {
+        header("location:index.php");
+    }
+    $userId = $_SESSION['userId'];
     require_once 'connectdb.php';
     $assoc = getAsc ($dbconn, $userId);
-//    $divisionId = $assoc['divisionId'];
-$divisionId =12;
+    $divisionId = $assoc['divisionId'];
 
 
 try {
     if (isset($_POST['submit'])) {
         //set variables
-
         $pqdate = new DateTime($_POST['jobDate']);
         $jobDate = $pqdate->format('Y-m-d');
-
-
-//        $date = $_POST['date'];
         $workLocation = mysqli_real_escape_string($dbconn, trim($_POST['workLocation']));
         $jobTime = $_POST['jobTime'];
         $latitude = mysqli_real_escape_string($dbconn, trim($_POST['latitude']));
@@ -143,9 +137,6 @@ try {
         $crewMemberName9 = mysqli_real_escape_string($dbconn, trim($_POST['crewMemberName9']));
         $crewMemberName10 = mysqli_real_escape_string($dbconn, trim($_POST['crewMemberName10']));
 
-//        echo $jobTime ." TIme<br>";
-
-
         //insert to db
         $sqlInsert= "INSERT INTO jobSafetyAnalysis (divisionId, userId, jobDate, workLocation, jobTime, latitude, longitude, nineEleven, cell, radio, subPhone, facility_shopPhone, hospital, location,
                     personPerformingJobBriefing, personInChargeOfWork, operatorMaintenance, internalMaintenance, XFER_LTC_Maintenance, circuitSwitchMaintenance, installPortable_XFMR, lowSideVoltageWork,
@@ -176,14 +167,14 @@ try {
                     NULLIF ('$crewMemberName7', ''), NULLIF ('$crewMemberName8', ''), NULLIF ('$crewMemberName9', ''), NULLIF ('$crewMemberName10', ''))";
 
         $dbconn->query($sqlInsert);
-//
-//        if ($_SESSION['permissionLevel'] == 'mgr') {
-//            header("location: dashboarddivmgr.php");
-//        } elseif ($_SESSION['permissionLevel'] == 'asc') {
-//            header("location: associate.php");
-//        } else {
-//            header("location: dashboardadmin.php");
-//        }
+
+        if ($_SESSION['permissionLevel'] == 'mgr') {
+            header("location: dashboarddivmgr.php");
+        } elseif ($_SESSION['permissionLevel'] == 'asc') {
+            header("location: associate.php");
+        } else {
+            header("location: dashboardadmin.php");
+        }
     }
 
 } catch (Exception $e) {
