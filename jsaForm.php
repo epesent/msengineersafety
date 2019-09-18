@@ -16,13 +16,13 @@ try {
     if (isset($_POST['submit'])) {
         //set variables
 
-        $pqdate = new DateTime($_POST['date']);
-        $date = $pqdate->format('Y-m-d');
+        $pqdate = new DateTime($_POST['jobDate']);
+        $jobDate = $pqdate->format('Y-m-d');
 
 
 //        $date = $_POST['date'];
         $workLocation = mysqli_real_escape_string($dbconn, trim($_POST['workLocation']));
-        $time = $_POST['time'];
+        $jobTime = $_POST['jobTime'];
         $latitude = mysqli_real_escape_string($dbconn, trim($_POST['latitude']));
         $longitude = mysqli_real_escape_string($dbconn, trim($_POST['longitude']));
         if (!empty($_POST['nineEleven'])) {$nineEleven = $_POST['nineEleven'];} else {$nineEleven = 0;}
@@ -45,11 +45,12 @@ try {
         if (!empty($_POST['liftSteel'])) {$liftSteel = $_POST['liftSteel'];} else {$liftSteel = 0;}
         $otherDescriptionOfWork = mysqli_real_escape_string($dbconn, trim($_POST['otherDescriptionOfWork']));
         if (!empty($_POST['energizedApparatus'])) {$energizedApparatus = $_POST['energizedApparatus'];} else {$energizedApparatus = 0;}
-        if (!empty($_POST['electrical-OVHTransmissionLines'])) {$electricalOVHTransmissionLines = $_POST['electrical-OVHTransmissionLines'];} else {$electricalOVHTransmissionLines = 0;}
+        if (!empty($_POST['electrical_OVHTransmissionLines'])) {$electricalOVHTransmissionLines = $_POST['electrical_OVHTransmissionLines'];} else {$electricalOVHTransmissionLines = 0;}
         if (!empty($_POST['heavyObjects'])) {$heavyObjects = $_POST['heavyObjects'];} else {$heavyObjects = 0;}
-        if (!empty($_POST['electrical-busWork'])) {$electricalbusWork = $_POST['electrical-busWork'];} else {$electricalbusWork = 0;}
+        if (!empty($_POST['electrical_busWork'])) {$electricalbusWork = $_POST['electrical_busWork'];} else {$electricalbusWork = 0;}
         if (!empty($_POST['equipmentInMotion'])) {$equipmentInMotion = $_POST['equipmentInMotion'];} else {$equipmentInMotion = 0;}
         if (!empty($_POST['noise'])) {$noise = $_POST['noise'];} else {$noise = 0;}
+        if (!empty($_POST['electricalDistributionLines'])) {$electricalDistributionLines = $_POST['electricalDistributionLines'];} else {$electricalDistributionLines = 0;}
         if (!empty($_POST['highAirPressureSystem'])) {$highAirPressureSystem = $_POST['highAirPressureSystem'];} else {$highAirPressureSystem = 0;}
         if (!empty($_POST['sharp_pointedEdges'])) {$sharp_pointedEdges = $_POST['sharp_pointedEdges'];} else {$sharp_pointedEdges = 0;}
         if (!empty($_POST['slip_tripOnUnevenGround'])) {$slip_tripOnUnevenGround = $_POST['slip_tripOnUnevenGround'];} else {$slip_tripOnUnevenGround = 0;}
@@ -77,24 +78,25 @@ try {
         if (!empty($_POST['345kv'])) {$onekv = $_POST['345kv'];} else {$onekv = 0;}
         if (!empty($_POST['138kv'])) {$twokv = $_POST['138kv'];} else {$twokv = 0;}
         if (!empty($_POST['69kv'])) {$threekv = $_POST['69kv'];} else {$threekv = 0;}
-        if (!empty($_POST['24-9kv'])) {$fourkv = $_POST['24-9kv'];} else {$fourkv = 0;}
-        if (!empty($_POST['14-4kv'])) {$fivekv = $_POST['14-4kv'];} else {$fivekv = 0;}
-        if (!empty($_POST['12-5kv'])) {$sixkv = $_POST['12-5kv'];} else {$sixkv = 0;}
-        if (!empty($_POST['7-2kv'])) {$sevenkv = $_POST['7-2kv'];} else {$sevenkv = 0;}
+        if (!empty($_POST['24_9kv'])) {$fourkv = $_POST['24_9kv'];} else {$fourkv = 0;}
+        if (!empty($_POST['14_4kv'])) {$fivekv = $_POST['14_4kv'];} else {$fivekv = 0;}
+        if (!empty($_POST['12_5kv'])) {$sixkv = $_POST['12_5kv'];} else {$sixkv = 0;}
+        if (!empty($_POST['7_2kv'])) {$sevenkv = $_POST['7_2kv'];} else {$sevenkv = 0;}
         if (!empty($_POST['480vac'])) {$onevac = $_POST['480vac'];} else {$onevac = 0;}
         if (!empty($_POST['120vac'])) {$twovac = $_POST['120vac'];} else {$twovac = 0;}
         if (!empty($_POST['130vdc'])) {$onevdc = $_POST['130vdc'];} else {$onevdc = 0;}
         if (!empty($_POST['345kvSafeDistance'])) {$onekvSafeDistance = $_POST['345kvSafeDistance'];} else {$onekvSafeDistance = 0;}
         if (!empty($_POST['138kvSafeDistance'])) {$twokvSafeDistance = $_POST['138kvSafeDistance'];} else {$twokvSafeDistance = 0;}
         if (!empty($_POST['69kvSafeDistance'])) {$threekvSafeDistance = $_POST['69kvSafeDistance'];} else {$threekvSafeDistance = 0;}
-        if (!empty($_POST['24-9kvSafeDistance'])) {$fourkvSafeDistance = $_POST['24-9kvSafeDistance'];} else {$fourkvSafeDistance = 0;}
-        if (!empty($_POST['14-4kvSafeDistance'])) {$fivekvSafeDistance = $_POST['14-4kvSafeDistance'];} else {$fivekvSafeDistance = 0;}
-        if (!empty($_POST['12-5kvSafeDistance'])) {$sixkvSafeDistance = $_POST['12-5kvSafeDistance'];} else {$sixkvSafeDistance = 0;}
-        if (!empty($_POST['7-2kvSafeDistance'])) {$sevenkvSafeDistance = $_POST['7-2kvSafeDistance'];} else {$sevenkvSafeDistance = 0;}
+        if (!empty($_POST['24_9kvSafeDistance'])) {$fourkvSafeDistance = $_POST['24_9kvSafeDistance'];} else {$fourkvSafeDistance = 0;}
+        if (!empty($_POST['14_4kvSafeDistance'])) {$fivekvSafeDistance = $_POST['14_4kvSafeDistance'];} else {$fivekvSafeDistance = 0;}
+        if (!empty($_POST['12_5kvSafeDistance'])) {$sixkvSafeDistance = $_POST['12_5kvSafeDistance'];} else {$sixkvSafeDistance = 0;}
+        if (!empty($_POST['7_2kvSafeDistance'])) {$sevenkvSafeDistance = $_POST['7_2kvSafeDistance'];} else {$sevenkvSafeDistance = 0;}
         if (!empty($_POST['480vacSafeDistance'])) {$onevacSafeDistance = $_POST['480vacSafeDistance'];} else {$onevacSafeDistance = 0;}
         if (!empty($_POST['120vacSafeDistance'])) {$twovacSafeDistance = $_POST['120vacSafeDistance'];} else {$twovacSafeDistance = 0;}
         if (!empty($_POST['130vdcSafeDistance'])) {$onevdcSafeDistance = $_POST['130vdcSafeDistance'];} else {$onevdcSafeDistance = 0;}
         if (!empty($_POST['lightning'])) {$lightning = $_POST['lightning'];} else {$lightning = 0;}
+        if (!empty($_POST['induction'])) {$induction = $_POST['induction'];} else {$induction = 0;}
         if (!empty($_POST['faultOnLine_Apparatus'])) {$faultOnLine_Apparatus = $_POST['faultOnLine_Apparatus'];} else {$faultOnLine_Apparatus = 0;}
         if (!empty($_POST['static'])) {$static = $_POST['static'];} else {$static = 0;}
         $otherEnergySource = mysqli_real_escape_string($dbconn, trim($_POST['otherEnergySource']));
@@ -141,46 +143,37 @@ try {
         $crewMemberName9 = mysqli_real_escape_string($dbconn, trim($_POST['crewMemberName9']));
         $crewMemberName10 = mysqli_real_escape_string($dbconn, trim($_POST['crewMemberName10']));
 
-//        echo $nineEleven ." 911<br>";
-//        echo $cell ." cell<br>";
-//        echo $radio ." radio<br>";
-//        echo $subPhone ." subPhone<br>";
-//        echo $facility_shopPhone ." TFacilityime<br>";
-//        echo $latitude ." Latitude<br>";
-//        echo $longitude ." longitude<br>";
+//        echo $jobTime ." TIme<br>";
 
 
         //insert to db
-        $sqlInsert= "INSERT INTO jobSafetyAnalysis (divisionId, userId, `date`, workLocation, `time`, latitude, longitude, nineEleven, cell, radio, subPhone, facility_shopPhone, hospital, location, 
-        personPerformingJobBriefing, personInChargeOfWork, operatorMaintenance, internalMaintenance, XFER_LTC_Maintenance, circuitSwitchMaintenance, installPortable_XFMR, lowSideVoltageWork, 
-        regularMaintenance, haulMaterial, liftSteel, otherDescriptionOfWork, energizedApparatus, electrical-OVHTransmissionLines, heavyObjects, electrical-busWork, equipmentInMotion, 
-        noise, electricalDistributionLines, highAirPressureSystem, sharp_pointedEdges, slip_tripOnUnevenGround, falling, fallingObjects, snakes_wasps, holes_excavations, hydraulicPressureSystem, 
-        traps, otherHazard, health_safetyHandbook, meter_verifyBeforeGrounding, visuallyIDPotentialEnergySources, errorEliminationTools, otherSpecificWorkProcedures, step_touchPotential, backing, 
-        wet_muddy, bucketEmergencyLetDownUnderstood, heatStress, weather, bucketEmergencyControlsTestedAndVerified, positionOfEquipment, otherSpecialConditionsOrConcerns, 345kv, 138kv, 69kv, 
-        24-9kv, 14-4kv, 12-5kv, 7-2kv, 480vac, 120vac, 130vdc, 345kvSafeDistance, 138kvSafeDistance, 69kvSafeDistance, 24-9kvSafeDistance, 14-4kvSafeDistance, 
-        12-5kvSafeDistance, 7-2kvSafeDistance, 480vacSafeDistance, 120vacSafeDistance, 130vdcSafeDistance, lightning, induction, faultOnLine_Apparatus, static, otherEnergySource, 
-        hydraulic, pneumatic, chemical, mechanical, notifySocc, notifyCustomers, vdi, grounding, barrier, lockout_tagout, liveLineTool, coverup, safeDistance, confinedSpace, clearanceNumber, 
-        hotLineHoldNumber, otherControlsToBeUsed, hardHat, boots, leatherGloves, harness_lanyard, safetyGlasses, cottonClothing, rubberGloves_Sleeves, hearingProtection, frc, safetyVest, 
-        otherPersonalProtectiveEquipment, frShirtTuckedIn, clothingHasNoTears, noContactWithBleachOrDEET, noStainsOnClothing, additionalInformationAsNecessary, crewMemberName1, crewMemberName2, 
-        crewMemberName3, crewMemberName4, crewMemberName5, crewMemberName6, crewMemberName7, crewMemberName8, crewMemberName9, crewMemberName10) VALUES ('$divisionId'. '$userId', '$date', NULLIF('$workLocation', ''), NULLIF ('$time', ''), NULLIF ('$latitude', ''),
-        NULLIF ('$longitude', ''), '$nineEleven', '$cell', '$radio', '$subPhone', '$facility_shopPhone', NULLIF ('$hospital', ''), NULLIF ('$location', ''), NULLIF ('$personPerformingJobBriefing',''),
-        NULLIF ('$personInChargeOfWork', ''), '$operatorMaintenance', '$internalMaintenance', '$XFER_LTC_Maintenance', '$circuitSwitchMaintenance', '$installPortable_XFMR', '$lowSideVoltageWork',
-        '$regularMaintenance', '$haulMaterial', '$liftSteel', NULLIF ('$otherDescriptionOfWork', ''), '$energizedApparatus', '$electricalOVHTransmissionLines', '$heavyObjects', '$electricalbusWork',
-        '$equipmentInMotion', '$noise', '$highAirPressureSystem', '$sharp_pointedEdges', '$slip_tripOnUnevenGround', '$falling', '$fallingObjects', '$snakes_wasps', '$holes_excavations', 
-        '$hydraulicPressureSystem', '$traps', NULLIF ('$otherHazard', ''), '$health_safetyHandbook', '$meter_verifyBeforeGrounding', '$visuallyIDPotentialEnergySources', '$errorEliminationTools',
-        NULLIF ('$otherSpecificWorkProcedures', ''), '$step_touchPotential', '$backing', '$wet_muddy', '$bucketEmergencyLetDownUnderstood', '$heatStress', '$weather', '$bucketEmergencyControlsTestedAndVerified',
-        '$positionOfEquipment', NULLIF ('$otherSpecialConditionsOrConcerns', ''), '$onekv', '$twokv', '$threekv', '$fourkv', '$fivekv', '$sixkv', '$sevenkv', '$onevac', '$twovac', '$onevdc', 
-        NULLIF ('$onekvSafeDistance', ''), NULLIF ('$twokvSafeDistance', ''), NULLIF ('$threekvSafeDistance', ''), NULLIF ('$fourkvSafeDistance', ''), NULLIF ('$fivekvSafeDistance', ''), 
-        NULLIF ('$sixkvSafeDistance', ''), NULLIF ('$sevenkvSafeDistance', ''), NULLIF ('$onevacSafeDistance', ''), NULLIF ('$twovacSafeDistance', ''), NULLIF ('$onevdcSafeDistance', ''),
-        '$lightning', '$faultOnLine_Apparatus', '$static', NULLIF ('$otherEnergySource', ''), '$hydraulic', '$pneumatic', '$chemical', '$mechanical', '$notifySocc', '$notifyCustomers', '$vdi', 
-        '$grounding', '$barrier', '$lockout_tagout', '$coverup', '$safeDistance', '$safeDistance', '$confinedSpace', '$clearanceNumber', '$hotLineHoldNumber', NULLIF ('$otherControlsToBeUsed', ''),
-        '$hardHat', '$boots', '$leatherGloves', '$harness_lanyard', '$safetyGlasses', '$cottonClothing', '$rubberGloves_Sleeves', '$hearingProtection', '$frc', '$safetyVest', 
-        NULLIF ('$otherPersonalProtectiveEquipment', ''), '$frShirtTuckedIn', '$clothingHasNoTears', '$noContactWithBleachOrDEET', '$noStainsOnClothing', NULLIF ('$additionalInformationAsNecessary', ''),
-        NULLIF ('$crewMemberName1', ''), NULLIF ('$crewMemberName2', ''), NULLIF ('$crewMemberName3', ''), NULLIF ('$crewMemberName4', ''), NULLIF ('$crewMemberName5', ''), NULLIF ('$crewMemberName6', ''), 
-        NULLIF ('$crewMemberName7', ''), NULLIF ('$crewMemberName8', ''), NULLIF ('$crewMemberName9', ''), NULLIF ('$crewMemberName10', ''))";
-
-
-
+        $sqlInsert= "INSERT INTO jobSafetyAnalysis (divisionId, userId, jobDate, workLocation, jobTime, latitude, longitude, nineEleven, cell, radio, subPhone, facility_shopPhone, hospital, location,
+                    personPerformingJobBriefing, personInChargeOfWork, operatorMaintenance, internalMaintenance, XFER_LTC_Maintenance, circuitSwitchMaintenance, installPortable_XFMR, lowSideVoltageWork,
+                    regularMaintenance, haulMaterial, liftSteel, otherDescriptionOfWork, energizedApparatus, electrical_OVHTransmissionLines, heavyObjects, electrical_busWork, equipmentInMotion,
+                    noise, electricalDistributionLines, highAirPressureSystem, sharp_pointedEdges, slip_tripOnUnevenGround, falling, fallingObjects, snakes_wasps, holes_excavations, hydraulicPressureSystem,
+                    traps, otherHazard, health_safetyHandbook, meter_verifyBeforeGrounding, visuallyIDPotentialEnergySources, errorEliminationTools, otherSpecificWorkProcedures, step_touchPotential, backing,
+                    wet_muddy, bucketEmergencyLetDownUnderstood, heatStress, weather, bucketEmergencyControlsTestedAndVerified, positionOfEquipment, otherSpecialConditionsOrConcerns, 345kv, 138kv, 69kv,
+                    24_9kv, 14_4kv, 12_5kv, 7_2kv, 480vac, 120vac, 130vdc, 345kvSafeDistance, 138kvSafeDistance, 69kvSafeDistance, 24_9kvSafeDistance, 14_4kvSafeDistance,
+                    12_5kvSafeDistance, 7_2kvSafeDistance, 480vacSafeDistance, 120vacSafeDistance, 130vdcSafeDistance, lightning, induction, faultOnLine_Apparatus, static, otherEnergySource,
+                    hydraulic, pneumatic, chemical, mechanical, notifySocc, notifyCustomers, vdi, grounding, barrier, lockout_tagout, liveLineTool, coverup, safeDistance, confinedSpace, clearanceNumber,
+                    hotLineHoldNumber, otherControlsToBeUsed, hardHat, boots, leatherGloves, harness_lanyard, safetyGlasses, cottonClothing, rubberGloves_Sleeves, hearingProtection, frc, safetyVest,
+                    otherPersonalProtectiveEquipment, frShirtTuckedIn, clothingHasNoTears, noContactWithBleachOrDEET, noStainsOnClothing, additionalInformationAsNecessary, crewMemberName1, crewMemberName2,
+                    crewMemberName3, crewMemberName4, crewMemberName5, crewMemberName6, crewMemberName7, crewMemberName8, crewMemberName9, crewMemberName10) VALUES ('$divisionId', '$userId', '$jobDate', NULLIF('$workLocation', ''), NULLIF ('$jobTime', ''), NULLIF ('$latitude', ''),
+                    NULLIF ('$longitude', ''), '$nineEleven', '$cell', '$radio', '$subPhone', '$facility_shopPhone', NULLIF ('$hospital', ''), NULLIF ('$location', ''), NULLIF ('$personPerformingJobBriefing',''),
+                    NULLIF ('$personInChargeOfWork', ''), '$operatorMaintenance', '$internalMaintenance', '$XFER_LTC_Maintenance', '$circuitSwitchMaintenance', '$installPortable_XFMR', '$lowSideVoltageWork',
+                    '$regularMaintenance', '$haulMaterial', '$liftSteel', NULLIF ('$otherDescriptionOfWork', ''), '$energizedApparatus', '$electricalOVHTransmissionLines', '$heavyObjects', '$electricalbusWork',
+                    '$equipmentInMotion', '$noise', '$electricalDistributionLines', '$highAirPressureSystem', '$sharp_pointedEdges', '$slip_tripOnUnevenGround', '$falling', '$fallingObjects', '$snakes_wasps', '$holes_excavations',
+                    '$hydraulicPressureSystem', '$traps', NULLIF ('$otherHazard', ''), '$health_safetyHandbook', '$meter_verifyBeforeGrounding', '$visuallyIDPotentialEnergySources', '$errorEliminationTools',
+                    NULLIF ('$otherSpecificWorkProcedures', ''), '$step_touchPotential', '$backing', '$wet_muddy', '$bucketEmergencyLetDownUnderstood', '$heatStress', '$weather', '$bucketEmergencyControlsTestedAndVerified',
+                    '$positionOfEquipment', NULLIF ('$otherSpecialConditionsOrConcerns', ''), '$onekv', '$twokv', '$threekv', '$fourkv', '$fivekv', '$sixkv', '$sevenkv', '$onevac', '$twovac', '$onevdc',
+                    NULLIF ('$onekvSafeDistance', ''), NULLIF ('$twokvSafeDistance', ''), NULLIF ('$threekvSafeDistance', ''), NULLIF ('$fourkvSafeDistance', ''), NULLIF ('$fivekvSafeDistance', ''),
+                    NULLIF ('$sixkvSafeDistance', ''), NULLIF ('$sevenkvSafeDistance', ''), NULLIF ('$onevacSafeDistance', ''), NULLIF ('$twovacSafeDistance', ''), NULLIF ('$onevdcSafeDistance', ''),
+                    '$lightning', '$induction', '$faultOnLine_Apparatus', '$static', NULLIF ('$otherEnergySource', ''), '$hydraulic', '$pneumatic', '$chemical', '$mechanical', '$notifySocc', '$notifyCustomers', '$vdi',
+                    '$grounding', '$barrier', '$lockout_tagout', '$coverup', '$safeDistance', '$safeDistance', '$confinedSpace', '$clearanceNumber', '$hotLineHoldNumber', NULLIF ('$otherControlsToBeUsed', ''),
+                    '$hardHat', '$boots', '$leatherGloves', '$harness_lanyard', '$safetyGlasses', '$cottonClothing', '$rubberGloves_Sleeves', '$hearingProtection', '$frc', '$safetyVest',
+                    NULLIF ('$otherPersonalProtectiveEquipment', ''), '$frShirtTuckedIn', '$clothingHasNoTears', '$noContactWithBleachOrDEET', '$noStainsOnClothing', NULLIF ('$additionalInformationAsNecessary', ''),
+                    NULLIF ('$crewMemberName1', ''), NULLIF ('$crewMemberName2', ''), NULLIF ('$crewMemberName3', ''), NULLIF ('$crewMemberName4', ''), NULLIF ('$crewMemberName5', ''), NULLIF ('$crewMemberName6', ''),
+                    NULLIF ('$crewMemberName7', ''), NULLIF ('$crewMemberName8', ''), NULLIF ('$crewMemberName9', ''), NULLIF ('$crewMemberName10', ''))";
 
         $dbconn->query($sqlInsert);
 //
@@ -272,14 +265,14 @@ try {
             <form action="" method="post">
                 <div id="generalInfo" class="form-group">
                     <div class="form-row mb-md-3">
-                        <label for="date" class="col-md-1 form-control-label form-control-sm ml-md-5">Date:</label>
-                        <input type="text" id="date" name="date" class="col-md-2 form-control form-control-sm pickDate"/>
+                        <label for="jobDate" class="col-md-1 form-control-label form-control-sm ml-md-5">Date:</label>
+                        <input type="text" id="jobDate" name="jobDate" class="col-md-2 form-control form-control-sm pickDate"/>
                         <label for="workLocation" class="col-md-2 form-control-label form-control-sm text-md-right">Work Location:</label>
                         <input type="text" id="workLocation" name="workLocation" class="col-md-5 form-control"/>
                     </div><!--end from row-->
                     <div class="form-row mb-md-3">
-                        <label for="time" class="col-md-1 form-control-label form-control-sm ml-md-5">Time:</label>
-                        <input type="time" id="time" name="time" class="col-md-2 form-control"/>
+                        <label for="jobTime" class="col-md-1 form-control-label form-control-sm ml-md-5">Time:</label>
+                        <input type="time" name="jobTime" id="jobTime" class="col-md-2 form-control"/>
                         <label for="latitude" class="col-md-2 form-control-label form-control-sm text-md-right">Latitude:</label>
                         <input type="text" id="latitude" name="latitude" class="col-md-2 form-control form-control-sm"/>
                         <label for="longitude" class="col-md-2 form-control-label form-control-sm text-md-right">Longitude:</label>
@@ -456,7 +449,7 @@ try {
                         <div class="col-md-4">
                             <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
                                 <label for="electrical-busWork" class="form-check-label form-control-sm">
-                                    <input id="electrical-busWork" name="electrical-busWork" type="checkbox" class="form-check-input" value="1">Electrical-bus Work
+                                    <input id="electrical_busWork" name="electrical_busWork" type="checkbox" class="form-check-input" value="1">Electrical-bus Work
                                 </label>
                             </div>
                         </div>
@@ -703,7 +696,7 @@ try {
                             <div class="col-md-2 border border-dark">
                                 <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
                                     <label for="24-9kv" class="form-check-label form-control-sm">
-                                        <input id="24-9kv" name="24-9kv" type="checkbox" class="form-check-input" value="1">24.9 kv
+                                        <input id="24_9kv" name="24_9kv" type="checkbox" class="form-check-input" value="1">24.9 kv
                                     </label>
                                 </div>
                             </div>
@@ -719,28 +712,28 @@ try {
                                 <input type="text" id="69kvSafeDistance" name="69kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
                             </div>
                             <div class="col-md-2 border border-dark">
-                                <input type="text" id="24-9kvSafeDistance" name="24-9kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                                <input type="text" id="24_9kvSafeDistance" name="24_9kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
                             </div>
                         </div><!--end form row-->
                         <div class="form-row justify-content-md-center mt-3">
                             <div class="col-md-2 border border-dark">
                                 <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                    <label for="14-4kv" class="form-check-label form-control-sm">
-                                        <input id="14-4kv" name="14-4kv" type="checkbox" class="form-check-input" value="1">14.4 kv
+                                    <label for="14_4kv" class="form-check-label form-control-sm">
+                                        <input id="14_4kv" name="14_4kv" type="checkbox" class="form-check-input" value="1">14.4 kv
                                     </label>
                                 </div>
                             </div>
                             <div class="col-md-2 border border-dark">
                                 <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                    <label for="12-5kv" class="form-check-label form-control-sm">
-                                        <input id="12-5kv" name="12-5kv" type="checkbox" class="form-check-input" value="1">12.5 kv
+                                    <label for="12_5kv" class="form-check-label form-control-sm">
+                                        <input id="12_5kv" name="12_5kv" type="checkbox" class="form-check-input" value="1">12.5 kv
                                     </label>
                                 </div>
                             </div>
                             <div class="col-md-2 border border-dark">
                                 <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                    <label for="7-2kv" class="form-check-label form-control-sm">
-                                        <input id="7-2kv" name="7-2kv" type="checkbox" class="form-check-input" value="1">7.2 kv
+                                    <label for="7_2kv" class="form-check-label form-control-sm">
+                                        <input id="7_2kv" name="7_2kv" type="checkbox" class="form-check-input" value="1">7.2 kv
                                     </label>
                                 </div>
                             </div>
@@ -750,13 +743,13 @@ try {
                         </div><!--end form row-->
                         <div class="form-row justify-content-md-center">
                             <div class="col-md-2 border border-dark">
-                                <input type="text" id="14-4kvSafeDistance" name="14-4kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                                <input type="text" id="14_4kvSafeDistance" name="14_4kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
                             </div>
                             <div class="col-md-2 border border-dark">
-                                <input type="text" id="12-5kvSafeDistance" name="12-5kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                                <input type="text" id="12_5kvSafeDistance" name="12_5kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
                             </div>
                             <div class="col-md-2 border border-dark">
-                                <input type="text" id="7-2kvSafeDistance" name="7-2kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                                <input type="text" id="7_2kvSafeDistance" name="7_2kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
                             </div>
                             <div class="col-md-2">
                                 &nbsp;
@@ -817,22 +810,22 @@ try {
                             <input id="69kv" name="69kv" type="checkbox" class="form-check-input" value="1">69 kv
                         </label>
                         <input type="text" id="69kvSafeDistance" name="69kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        <label for="24-9kv" class="form-check-label form-control-sm ml-3">
-                            <input id="24-9kv" name="24-9kv" type="checkbox" class="form-check-input" value="1">24.9 kv
+                        <label for="24_9kv" class="form-check-label form-control-sm ml-3">
+                            <input id="24_9kv" name="24_9kv" type="checkbox" class="form-check-input" value="1">24.9 kv
                         </label>
-                        <input type="text" id="24-9kvSafeDistance" name="24-9kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        <label for="14-4kv" class="form-check-label form-control-sm ml-3">
-                            <input id="14-4kv" name="14-4kv" type="checkbox" class="form-check-input" value="1">14.4 kv
+                        <input type="text" id="24_9kvSafeDistance" name="24_9kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <label for="14_4kv" class="form-check-label form-control-sm ml-3">
+                            <input id="14_4kv" name="14_4kv" type="checkbox" class="form-check-input" value="1">14.4 kv
                         </label>
-                        <input type="text" id="14-4kvSafeDistance" name="14-4kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        <label for="12-5kv" class="form-check-label form-control-sm ml-3">
-                            <input id="12-5kv" name="12-5kv" type="checkbox" class="form-check-input" value="1">12.5 kv
+                        <input type="text" id="14_4kvSafeDistance" name="14_4kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <label for="12_5kv" class="form-check-label form-control-sm ml-3">
+                            <input id="12_5kv" name="12_5kv" type="checkbox" class="form-check-input" value="1">12.5 kv
                         </label>
-                        <input type="text" id="12-5kvSafeDistance" name="12-5kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        <label for="7-2kv" class="form-check-label form-control-sm ml-3">
-                            <input id="7-2kv" name="7-2kv" type="checkbox" class="form-check-input" value="1">7.2 kv
+                        <input type="text" id="12_5kvSafeDistance" name="12_5kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <label for="7_2kv" class="form-check-label form-control-sm ml-3">
+                            <input id="7_2kv" name="7_2kv" type="checkbox" class="form-check-input" value="1">7.2 kv
                         </label>
-                        <input type="text" id="7-2kvSafeDistance" name="7-2kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <input type="text" id="7_2kvSafeDistance" name="7_2kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
                         <label for="14-4kv" class="form-check-label form-control-sm ml-3">
                             <input id="480vac" name="480vac" type="checkbox" class="form-check-input" value="1">480 VAC
                         </label>
