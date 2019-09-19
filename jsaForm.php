@@ -79,16 +79,16 @@ try {
         if (!empty($_POST['480vac'])) {$onevac = $_POST['480vac'];} else {$onevac = 0;}
         if (!empty($_POST['120vac'])) {$twovac = $_POST['120vac'];} else {$twovac = 0;}
         if (!empty($_POST['130vdc'])) {$onevdc = $_POST['130vdc'];} else {$onevdc = 0;}
-        if (!empty($_POST['345kvSafeDistance'])) {$onekvSafeDistance = $_POST['345kvSafeDistance'];} else {$onekvSafeDistance = 0;}
-        if (!empty($_POST['138kvSafeDistance'])) {$twokvSafeDistance = $_POST['138kvSafeDistance'];} else {$twokvSafeDistance = 0;}
-        if (!empty($_POST['69kvSafeDistance'])) {$threekvSafeDistance = $_POST['69kvSafeDistance'];} else {$threekvSafeDistance = 0;}
-        if (!empty($_POST['24_9kvSafeDistance'])) {$fourkvSafeDistance = $_POST['24_9kvSafeDistance'];} else {$fourkvSafeDistance = 0;}
-        if (!empty($_POST['14_4kvSafeDistance'])) {$fivekvSafeDistance = $_POST['14_4kvSafeDistance'];} else {$fivekvSafeDistance = 0;}
-        if (!empty($_POST['12_5kvSafeDistance'])) {$sixkvSafeDistance = $_POST['12_5kvSafeDistance'];} else {$sixkvSafeDistance = 0;}
-        if (!empty($_POST['7_2kvSafeDistance'])) {$sevenkvSafeDistance = $_POST['7_2kvSafeDistance'];} else {$sevenkvSafeDistance = 0;}
-        if (!empty($_POST['480vacSafeDistance'])) {$onevacSafeDistance = $_POST['480vacSafeDistance'];} else {$onevacSafeDistance = 0;}
-        if (!empty($_POST['120vacSafeDistance'])) {$twovacSafeDistance = $_POST['120vacSafeDistance'];} else {$twovacSafeDistance = 0;}
-        if (!empty($_POST['130vdcSafeDistance'])) {$onevdcSafeDistance = $_POST['130vdcSafeDistance'];} else {$onevdcSafeDistance = 0;}
+        $onekvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['345kvSafeDistance']));
+        $twokvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['138kvSafeDistance']));
+        $threekvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['69kvSafeDistance']));
+        $fourkvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['24_9kvSafeDistance']));
+        $fivekvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['14_4kvSafeDistance']));
+        $sixkvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['12_5kvSafeDistance']));
+        $sevenkvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['7_2kvSafeDistance']));
+        $onevacSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['480vacSafeDistance']));
+        $twovacSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['120vacSafeDistance']));
+        $onevdcSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['130vdcSafeDistance']));
         if (!empty($_POST['lightning'])) {$lightning = $_POST['lightning'];} else {$lightning = 0;}
         if (!empty($_POST['induction'])) {$induction = $_POST['induction'];} else {$induction = 0;}
         if (!empty($_POST['faultOnLine_Apparatus'])) {$faultOnLine_Apparatus = $_POST['faultOnLine_Apparatus'];} else {$faultOnLine_Apparatus = 0;}
@@ -137,6 +137,9 @@ try {
         $crewMemberName9 = mysqli_real_escape_string($dbconn, trim($_POST['crewMemberName9']));
         $crewMemberName10 = mysqli_real_escape_string($dbconn, trim($_POST['crewMemberName10']));
 
+
+        echo $onekvSafeDistance ." Testing";
+
         //insert to db
         $sqlInsert= "INSERT INTO jobSafetyAnalysis (divisionId, userId, jobDate, workLocation, jobTime, latitude, longitude, nineEleven, cell, radio, subPhone, facility_shopPhone, hospital, location,
                     personPerformingJobBriefing, personInChargeOfWork, operatorMaintenance, internalMaintenance, XFER_LTC_Maintenance, circuitSwitchMaintenance, installPortable_XFMR, lowSideVoltageWork,
@@ -166,15 +169,15 @@ try {
                     NULLIF ('$crewMemberName1', ''), NULLIF ('$crewMemberName2', ''), NULLIF ('$crewMemberName3', ''), NULLIF ('$crewMemberName4', ''), NULLIF ('$crewMemberName5', ''), NULLIF ('$crewMemberName6', ''),
                     NULLIF ('$crewMemberName7', ''), NULLIF ('$crewMemberName8', ''), NULLIF ('$crewMemberName9', ''), NULLIF ('$crewMemberName10', ''))";
 
-        $dbconn->query($sqlInsert);
-
-        if ($_SESSION['permissionLevel'] == 'mgr') {
-            header("location: dashboarddivmgr.php");
-        } elseif ($_SESSION['permissionLevel'] == 'asc') {
-            header("location: associate.php");
-        } else {
-            header("location: dashboardadmin.php");
-        }
+//        $dbconn->query($sqlInsert);
+//
+//        if ($_SESSION['permissionLevel'] == 'mgr') {
+//            header("location: dashboarddivmgr.php");
+//        } elseif ($_SESSION['permissionLevel'] == 'asc') {
+//            header("location: associate.php");
+//        } else {
+//            header("location: dashboardadmin.php");
+//        }
     }
 
 } catch (Exception $e) {
@@ -292,8 +295,8 @@ try {
                         </div>
                         <div class="col-md-2">
                             <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="Radio" class="form-check-label form-control-sm">
-                                    <input id="Radio" name="Radio" type="checkbox" class="form-check-input" value="1">Radio
+                                <label for="radio" class="form-check-label form-control-sm">
+                                    <input id="radio" name="radio" type="checkbox" class="form-check-input" value="1">Radio
                                 </label>
                             </div>
                         </div>
@@ -423,8 +426,8 @@ try {
                         </div>
                         <div class="col-md-4">
                             <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="electrical-OVHTransmissionLines" class="form-check-label form-control-sm">
-                                    <input id="electrical-OVHTransmissionLines" name="electrical-OVHTransmissionLines" type="checkbox" class="form-check-input" value="1">Electrical-OVH Transmission Lines
+                                <label for="electrical_OVHTransmissionLines" class="form-check-label form-control-sm">
+                                    <input id="electrical_OVHTransmissionLines" name="electrical_OVHTransmissionLines" type="checkbox" class="form-check-input" value="1">Electrical-OVH Transmission Lines
                                 </label>
                             </div>
                         </div>
@@ -790,9 +793,9 @@ try {
                     <!--this section is only seen sm and below due to the arrangement of the "Safe Distance" columns underneath the voltage checkboxes-->
                     <div id="showMobile" class="d-md-none">
                         <label for="345kv" class="form-check-label form-control-sm ml-3">
-                            <input id="345kv" name="345kv" type="checkbox" class="form-check-input" value="1">345 kv
+                            <input id="345kv" name="345kvM" type="checkbox" class="form-check-input" value="1">345 kv
                         </label>
-                        <input type="text" id="345kvSafeDistance" name="345kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <input type="text" id="345kvSafeDistanceM" name="345kvSafeDistanceM" class="form-control form-control-sm" placeholder="Safe Distance"/>
                         <label for="138kv" class="form-check-label form-control-sm ml-3">
                             <input id="138kv" name="138kv" type="checkbox" class="form-check-input" value="1">138 kv
                         </label>

@@ -272,4 +272,11 @@ function getaForm ($dbconn, $formId) {
     $GF = mysqli_fetch_assoc($result);
     return $GF;
 }
+//get specific jsa Report
+function getJSARep ($dbconn, $jsaId) {
+    $sqljsaSpec = "SELECT * FROM jobSafetyAnalysis WHERE jsaId = $jsaId";
+    $result = $dbconn->query($sqljsaSpec);
+    $jsa = mysqli_fetch_assoc($result);
+    return $jsa;
+}
 
