@@ -79,16 +79,56 @@ try {
         if (!empty($_POST['480vac'])) {$onevac = $_POST['480vac'];} else {$onevac = 0;}
         if (!empty($_POST['120vac'])) {$twovac = $_POST['120vac'];} else {$twovac = 0;}
         if (!empty($_POST['130vdc'])) {$onevdc = $_POST['130vdc'];} else {$onevdc = 0;}
-        $onekvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['345kvSafeDistance']));
-        $twokvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['138kvSafeDistance']));
-        $threekvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['69kvSafeDistance']));
-        $fourkvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['24_9kvSafeDistance']));
-        $fivekvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['14_4kvSafeDistance']));
-        $sixkvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['12_5kvSafeDistance']));
-        $sevenkvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['7_2kvSafeDistance']));
-        $onevacSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['480vacSafeDistance']));
-        $twovacSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['120vacSafeDistance']));
-        $onevdcSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['130vdcSafeDistance']));
+        if (!empty($_POST['345kvSafeDistance'])) {
+            $onekvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['345kvSafeDistance']));
+        } else {
+            $onekvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['345kvSafeDistanceM']));
+        }
+        if (!empty($_POST['138kvSafeDistance'])) {
+            $twokvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['138kvSafeDistance']));
+        } else {
+            $twokvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['138kvSafeDistanceM']));
+        }
+        if (!empty($_POST['69kvSafeDistance'])) {
+            $threekvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['69kvSafeDistance']));
+        } else {
+            $threekvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['69kvSafeDistanceM']));
+        }
+        if (!empty($_POST['24_9kvSafeDistance'])) {
+            $fourkvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['24_9kvSafeDistance']));
+        } else {
+            $fourkvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['24_9kvSafeDistanceM']));
+        }
+        if (!empty($_POST['14_4kvSafeDistance'])) {
+            $fivekvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['14_4kvSafeDistance']));
+        } else {
+            $fivekvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['14_4kvSafeDistanceM']));
+        }
+        if (!empty($_POST['12_5kvSafeDistance'])) {
+            $sixkvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['12_5kvSafeDistance']));
+        } else {
+            $sixkvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['12_5kvSafeDistanceM']));
+        }
+        if (!empty($_POST['7_2kvSafeDistance'])) {
+            $sevenkvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['7_2kvSafeDistance']));
+        } else {
+            $sevenkvSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['7_2kvSafeDistanceM']));
+        }
+        if (!empty($_POST['480vacSafeDistance'])) {
+            $onevacSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['480vacSafeDistance']));
+        } else {
+            $onevacSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['480vacSafeDistanceM']));
+        }
+        if (!empty($_POST['120vacSafeDistance'])) {
+            $twovacSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['120vacSafeDistance']));
+        } else {
+            $twovacSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['120vacSafeDistanceM']));
+        }
+        if (!empty($_POST['130vdcSafeDistance'])) {
+            $onevdcSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['130vdcSafeDistance']));
+        } else {
+            $onevdcSafeDistance = mysqli_real_escape_string($dbconn, trim($_POST['130vdcSafeDistanceM']));
+        }
         if (!empty($_POST['lightning'])) {$lightning = $_POST['lightning'];} else {$lightning = 0;}
         if (!empty($_POST['induction'])) {$induction = $_POST['induction'];} else {$induction = 0;}
         if (!empty($_POST['faultOnLine_Apparatus'])) {$faultOnLine_Apparatus = $_POST['faultOnLine_Apparatus'];} else {$faultOnLine_Apparatus = 0;}
@@ -137,9 +177,6 @@ try {
         $crewMemberName9 = mysqli_real_escape_string($dbconn, trim($_POST['crewMemberName9']));
         $crewMemberName10 = mysqli_real_escape_string($dbconn, trim($_POST['crewMemberName10']));
 
-
-        echo $onekvSafeDistance ." Testing";
-
         //insert to db
         $sqlInsert= "INSERT INTO jobSafetyAnalysis (divisionId, userId, jobDate, workLocation, jobTime, latitude, longitude, nineEleven, cell, radio, subPhone, facility_shopPhone, hospital, location,
                     personPerformingJobBriefing, personInChargeOfWork, operatorMaintenance, internalMaintenance, XFER_LTC_Maintenance, circuitSwitchMaintenance, installPortable_XFMR, lowSideVoltageWork,
@@ -169,7 +206,7 @@ try {
                     NULLIF ('$crewMemberName1', ''), NULLIF ('$crewMemberName2', ''), NULLIF ('$crewMemberName3', ''), NULLIF ('$crewMemberName4', ''), NULLIF ('$crewMemberName5', ''), NULLIF ('$crewMemberName6', ''),
                     NULLIF ('$crewMemberName7', ''), NULLIF ('$crewMemberName8', ''), NULLIF ('$crewMemberName9', ''), NULLIF ('$crewMemberName10', ''))";
 
-//        $dbconn->query($sqlInsert);
+        $dbconn->query($sqlInsert);
 //
 //        if ($_SESSION['permissionLevel'] == 'mgr') {
 //            header("location: dashboarddivmgr.php");
@@ -793,45 +830,45 @@ try {
                     <!--this section is only seen sm and below due to the arrangement of the "Safe Distance" columns underneath the voltage checkboxes-->
                     <div id="showMobile" class="d-md-none">
                         <label for="345kv" class="form-check-label form-control-sm ml-3">
-                            <input id="345kv" name="345kvM" type="checkbox" class="form-check-input" value="1">345 kv
+                            <input id="345kv" name="345kv" type="checkbox" class="form-check-input" value="1">345 kv
                         </label>
                         <input type="text" id="345kvSafeDistanceM" name="345kvSafeDistanceM" class="form-control form-control-sm" placeholder="Safe Distance"/>
                         <label for="138kv" class="form-check-label form-control-sm ml-3">
                             <input id="138kv" name="138kv" type="checkbox" class="form-check-input" value="1">138 kv
                         </label>
-                        <input type="text" id="138kvSafeDistance" name="138kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <input type="text" id="138kvSafeDistanceM" name="138kvSafeDistanceM" class="form-control form-control-sm" placeholder="Safe Distance"/>
                         <label for="69kv" class="form-check-label form-control-sm ml-3">
                             <input id="69kv" name="69kv" type="checkbox" class="form-check-input" value="1">69 kv
                         </label>
-                        <input type="text" id="69kvSafeDistance" name="69kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <input type="text" id="69kvSafeDistanceM" name="69kvSafeDistanceM" class="form-control form-control-sm" placeholder="Safe Distance"/>
                         <label for="24_9kv" class="form-check-label form-control-sm ml-3">
                             <input id="24_9kv" name="24_9kv" type="checkbox" class="form-check-input" value="1">24.9 kv
                         </label>
-                        <input type="text" id="24_9kvSafeDistance" name="24_9kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <input type="text" id="24_9kvSafeDistanceM" name="24_9kvSafeDistanceM" class="form-control form-control-sm" placeholder="Safe Distance"/>
                         <label for="14_4kv" class="form-check-label form-control-sm ml-3">
                             <input id="14_4kv" name="14_4kv" type="checkbox" class="form-check-input" value="1">14.4 kv
                         </label>
-                        <input type="text" id="14_4kvSafeDistance" name="14_4kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <input type="text" id="14_4kvSafeDistanceM" name="14_4kvSafeDistanceM" class="form-control form-control-sm" placeholder="Safe Distance"/>
                         <label for="12_5kv" class="form-check-label form-control-sm ml-3">
                             <input id="12_5kv" name="12_5kv" type="checkbox" class="form-check-input" value="1">12.5 kv
                         </label>
-                        <input type="text" id="12_5kvSafeDistance" name="12_5kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <input type="text" id="12_5kvSafeDistanceM" name="12_5kvSafeDistanceM" class="form-control form-control-sm" placeholder="Safe Distance"/>
                         <label for="7_2kv" class="form-check-label form-control-sm ml-3">
                             <input id="7_2kv" name="7_2kv" type="checkbox" class="form-check-input" value="1">7.2 kv
                         </label>
-                        <input type="text" id="7_2kvSafeDistance" name="7_2kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <input type="text" id="7_2kvSafeDistanceM" name="7_2kvSafeDistanceM" class="form-control form-control-sm" placeholder="Safe Distance"/>
                         <label for="14-4kv" class="form-check-label form-control-sm ml-3">
                             <input id="480vac" name="480vac" type="checkbox" class="form-check-input" value="1">480 VAC
                         </label>
-                        <input type="text" id="480vacSafeDistance" name="480vacSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <input type="text" id="480vacSafeDistanceM" name="480vacSafeDistanceM" class="form-control form-control-sm" placeholder="Safe Distance"/>
                         <label for="120vac" class="form-check-label form-control-sm ml-3">
                             <input id="120vac" name="120vac" type="checkbox" class="form-check-input" value="1">120 VAC
                         </label>
-                        <input type="text" id="120vacSafeDistance" name="120vacSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <input type="text" id="120vacSafeDistanceM" name="120vacSafeDistanceM" class="form-control form-control-sm" placeholder="Safe Distance"/>
                         <label for="130vdc" class="form-check-label form-control-sm ml-3">
                             <input id="130vdc" name="130vdc" type="checkbox" class="form-check-input" value="1">130 VDC
                         </label>
-                        <input type="text" id="130vdcSafeDistance" name="130vdcSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                        <input type="text" id="130vdcSafeDistanceM" name="130vdcSafeDistanceM" class="form-control form-control-sm" placeholder="Safe Distance"/>
                     </div><!--end showMobile-->
                     <div class="form-row justify-content-md-center mt-md-3">
                         <div class="col-md-3">
@@ -1047,8 +1084,8 @@ try {
                         </div>
                         <div class="col-md-3">
                             <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="cottonCLothing" class="form-check-label form-control-sm">
-                                    <input id="cottonCLothing" name="cottonCLothing" type="checkbox" class="form-check-input" value="1">Cotton Clothing
+                                <label for="cottonClothing" class="form-check-label form-control-sm">
+                                    <input id="cottonClothing" name="cottonClothing" type="checkbox" class="form-check-input" value="1">Cotton Clothing
                                 </label>
                             </div>
                         </div>
@@ -1128,7 +1165,7 @@ try {
                     <div class="col-md-8"><h5>Additional Information As Necessary:</h5></div>
                 </div><!--end row--->
                 <div id="additionInfo" class="form-group">
-                    <textarea rows="10" cols="10" id="additionInformationAsNecessary" name="additionInformationAsNecessary" class="form-control form-control-sm"></textarea>
+                    <textarea rows="10" cols="10" id="additionalInformationAsNecessary" name="additionalInformationAsNecessary" class="form-control form-control-sm"></textarea>
                 </div><!--end form group additional information-->
                 <div class="row mt-md-4">
                     <div class="col-md-8"><h5>Crew Members (and Others) Participating in Job Briefings:</h5></div>

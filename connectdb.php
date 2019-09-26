@@ -279,4 +279,22 @@ function getJSARep ($dbconn, $jsaId) {
     $jsa = mysqli_fetch_assoc($result);
     return $jsa;
 }
-
+//get specific jsaT Report
+function getJSATRep ($dbconn, $jsaTaskId) {
+    $sqljsaTSpec = "SELECT * FROM jsaTaskAnalysis WHERE jsaTaskId = $jsaTaskId";
+    $result = $dbconn->query($sqljsaTSpec);
+    $jsaT = mysqli_fetch_assoc($result);
+    return $jsaT;
+}
+//get all jsa reports by division by year
+function getDivJsaReports ($dbconn, $divisionId, $year) {
+    $sqlDJR = "SELECT * FROM jobSafetyAnalysis WHERE divisionId = $divisionId AND YEAR(jobDate) = $year ORDER BY jobDate ASC, userId";
+    $result = $dbconn->query($sqlDJR);
+    return $result;
+}
+//get all jsa reports by division by year
+function getDivJsaTReports ($dbconn, $divisionId, $year) {
+    $sqlDJTR = "SELECT * FROM jsaTaskAnalysis WHERE divisionId = $divisionId AND YEAR(jobDate) = $year ORDER BY jobDate ASC, userId";
+    $result = $dbconn->query($sqlDJTR);
+    return $result;
+}

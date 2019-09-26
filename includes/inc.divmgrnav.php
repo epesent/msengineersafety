@@ -7,6 +7,7 @@
     <div id="mblcontent">
         <ul>
             <li><a href="dashboarddivmgr.php" class="sidebar" title="Dashboard">Dashboard</a></li>
+            <li><a href="fillableForms.php" class="sidebar" title="Download Forms">On-line Forms</a></li>
             <li><a href="download.php" class="sidebar" title="Download Forms">Download Forms</a></li>
             <li><a href="uploadForms.php" class="sidebar" title="Upload Forms">UpLoad Forms</a></li>
             <?php

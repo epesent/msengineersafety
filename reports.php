@@ -1,16 +1,22 @@
 <?php
     session_start();
     require_once 'connectdb.php';
+    if (isset($_GET['year'])) {
+        $year = $_GET['year'];
+    } else {
+        $year = date('Y');
+    }
     if (isset($_GET['divisionId'])) {
         $divisionId = $_GET['divisionId'];
         $sqlDivName = "SELECT divisionName FROM divisions WHERE divisionId='$divisionId'";
         $divName = $dbconn->query($sqlDivName);
         $divisionName = mysqli_fetch_assoc($divName);
+        $jsaReports = getDivJsaReports ($dbconn, $divisionId, $year);
+        $jsTaReports = getDivJsaTReports ($dbconn, $divisionId, $year);
     }
-    if (isset($_GET['year'])) {
-        $year = $_GET['year'];
-    }
+
     $allDivisions = getDivisions ($dbconn);
+
 try {
     if (isset($_POST['go'])) {
         $divisionId = $_POST['division'];
@@ -47,20 +53,23 @@ try {
         } ?>
         <div id="mbodyright1">
             <div id="mbr1content" align="center">
-                <h2>UPLOADED REPORTS</h2>
+                <h2 style="margin-bottom: 20px;">UPLOADED REPORTS</h2>
                 <form action="" method="post">
                     <select id="division" name="division">
-                        <?php if (isset($_GET['divisionId'])) { //make sure division agrees with selection ?>
-                            <option value="<?php echo $divisionId; ?>" selected="selected"><?php echo $divisionName['divisionName']; ?></option>
-                        <?php } else { ?>
-                            <option value="all">All Divisions</option>
+                        <?php if ($_SESSION['permissionLevel'] == 'adm') {
+                            if (isset($_GET['divisionId'])) { //make sure division agrees with selection ?>
+                                <option value="<?php echo $divisionId; ?>" selected="selected"><?php echo $divisionName['divisionName']; ?></option>
+                            <?php } else { ?>
+                                <option value="all">Select Division</option>
+                            <?php } ?>
+                            <?php //options for selection
+                                foreach ($allDivisions as $rowDiv) {
+                                    echo "<option value='" .$rowDiv['divisionId'] ."'>" .$rowDiv['divisionName'] ."</option>";
+                                }
+                        } else { ?>
+                            <option value="<?php echo $divisionId; ?>" selected="selected" disabled><?php echo $divisionName['divisionName']; ?></option>
                         <?php } ?>
 
-                        <?php
-                            foreach ($allDivisions as $rowDiv) {
-                                echo "<option value='" .$rowDiv['divisionId'] ."'>" .$rowDiv['divisionName'] ."</option>";
-                            }
-                        ?>
                     </select>&nbsp;&nbsp;&nbsp;&nbsp;
                     <select id="year" name="year">
                         <?php if (isset($_GET['year'])) { //Make sure year agrees with selection ?>
@@ -77,366 +86,25 @@ try {
                     </select>&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="submit" id="go" name="go" class="btn3" value="GO"/>
                 </form><br/>
-                <h4><em>(Report names are labeled by "Division Name", "Report Abbreviation", and date/time uploaded.)</em></h4>
-                <br/><br/>
+                <?php if (isset($_GET['divisionId'])) { ?>
+                    <h2 style="margin: 20px 0 10px 0;">Job Safety Analysis Reports - <?php echo $year; ?></h2>
+                    <?php foreach ($jsaReports as $jsa) {
+                        $date = strtotime($jsa['jobDate']);
+                        $jobDate = date("m/d/Y", $date);
+                        $user = getAsc ($dbconn, $jsa['userId']);
 
-                <?php
-//Division is chosen (year is also chosen because of code)
-                    if (isset($_GET['divisionId'])) {
-                        $divisionId = $_GET['divisionId'];
-                        if (isset($_GET['year'])) {
-                            $year = $_GET['year'];
-                        }
-                        echo "<h2>Division Name: " .$divisionName['divisionName'] ."</h2>";
-                        //get div reports by year
-                        $sqldivReportsbyYear = "SELECT * FROM uploaded WHERE YEAR(uploadDate) = '$year' AND divisionId = '$divisionId' ORDER BY uploadDate ASC";
-                        $divReportsbyYear = $dbconn->query($sqldivReportsbyYear);
-                        //Separate and print reports by month
-                        echo "<h3><b>January " .$year ."</b></h3><br/>";
-                        foreach ($divReportsbyYear as $rowR) {
-                            //explode name of file to extract the month
-                            $m = explode('-', $rowR['uploadName']);
-                            $month = $m[3];
-                            if ($month == '01') {
-                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                            }
-                        } echo "<br/>";
-                        echo "<h3><b>February " .$year ."</b></h3><br/>";
-                        foreach ($divReportsbyYear as $rowR) {
-                            //explode name of file to extract the month
-                            $m = explode('-', $rowR['uploadName']);
-                            $month = $m[3];
-                            if ($month == '02') {
-                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                            }
-                        } echo "<br/>";
-                        echo "<h3><b>March " .$year ."</b></h3><br/>";
-                        foreach ($divReportsbyYear as $rowR) {
-                            //explode name of file to extract the month
-                            $m = explode('-', $rowR['uploadName']);
-                            $month = $m[3];
-                            if ($month == '03') {
-                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                            }
-                        } echo "<br/>";
-                        echo "<h3><b>April " .$year ."</b></h3><br/>";
-                        foreach ($divReportsbyYear as $rowR) {
-                            //explode name of file to extract the month
-                            $m = explode('-', $rowR['uploadName']);
-                            $month = $m[3];
-                            if ($month == '04') {
-                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                            }
-                        } echo "<br/>";
-                        echo "<h3><b>May " .$year ."</b></h3><br/>";
-                        foreach ($divReportsbyYear as $rowR) {
-                            //explode name of file to extract the month
-                            $m = explode('-', $rowR['uploadName']);
-                            $month = $m[3];
-                            if ($month == '05') {
-                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                            }
-                        } echo "<br/>";
-                        echo "<h3><b>June " .$year ."</b></h3><br/>";
-                        foreach ($divReportsbyYear as $rowR) {
-                            //explode name of file to extract the month
-                            $m = explode('-', $rowR['uploadName']);
-                            $month = $m[3];
-                            if ($month == '06') {
-                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                            }
-                        } echo "<br/>";
-                        echo "<h3><b>July " .$year ."</b></h3><br/>";
-                        foreach ($divReportsbyYear as $rowR) {
-                            //explode name of file to extract the month
-                            $m = explode('-', $rowR['uploadName']);
-                            $month = $m[3];
-                            if ($month == '07') {
-                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                            }
-                        } echo "<br/>";
-                        echo "<h3><b>August " .$year ."</b></h3><br/>";
-                        foreach ($divReportsbyYear as $rowR) {
-                            //explode name of file to extract the month
-                            $m = explode('-', $rowR['uploadName']);
-                            $month = $m[3];
-                            if ($month == '08') {
-                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                            }
-                        } echo "<br/>";
-                        echo "<h3><b>September " .$year ."</b></h3><br/>";
-                        foreach ($divReportsbyYear as $rowR) {
-                            //explode name of file to extract the month
-                            $m = explode('-', $rowR['uploadName']);
-                            $month = $m[3];
-                            if ($month == '09') {
-                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                            }
-                        } echo "<br/>";
-                        echo "<h3><b>October " .$year ."</b></h3><br/>";
-                        foreach ($divReportsbyYear as $rowR) {
-                            //explode name of file to extract the month
-                            $m = explode('-', $rowR['uploadName']);
-                            $month = $m[3];
-                            if ($month == '10') {
-                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                            }
-                        } echo "<br/>";
-                        echo "<h3><b>November " .$year ."</b></h3><br/>";
-                        foreach ($divReportsbyYear as $rowR) {
-                            //explode name of file to extract the month
-                            $m = explode('-', $rowR['uploadName']);
-                            $month = $m[3];
-                            if ($month == '11') {
-                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                            }
-                        } echo "<br/>";
-                        echo "<h3><b>December " .$year ."</b></h3><br/>";
-                        foreach ($divReportsbyYear as $rowR) {
-                            //explode name of file to extract the month
-                            $m = explode('-', $rowR['uploadName']);
-                            $month = $m[3];
-                            if ($month == '12') {
-                                echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                            }
-                        } echo "<br/>";
+                        echo "<a href='jsaReport.php?jsaId=" .$jsa['jsaId'] ."' target='_blank'>" .$jobDate ." - " .$user['firstName'] ." " .$user['lastName'] ." - " .$jsa['workLocation'] ."</a><br>";
+                    } ?>
 
-//No Division set but year is set
-                    } else {
-                        if (isset($_GET['year'])) {
-                            $year = $_GET['year'];
-                            //Get all reports by year
-                            $sqlreportsbyYear = "SELECT * FROM uploaded WHERE YEAR(uploadDate) = '$year' ORDER BY uploadDate ASC";
-                            $reportsbyYear = $dbconn->query($sqlreportsbyYear);
-                            //Separate and print reports by month
-                            echo "<h3><b>January " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '01') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>February " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '02') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>March " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '03') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>April " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '04') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>May " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '05') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>June " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '06') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>July " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '07') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>August " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '08') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>September " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '09') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>October " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '10') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>November " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '11') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>December " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '12') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
+                    <h2 style="margin: 20px 0 10px 0;">Job Safety Task Analysis Reports - <?php echo $year; ?></h2>
+                    <?php foreach ($jsTaReports as $jsTa) {
+                        $date = strtotime($jsTa['jobDate']);
+                        $jobDate = date("m/d/Y", $date);
+                        $user = getAsc ($dbconn, $jsTa['userId']);
 
-
-//No division or Year set - Default setting of page
-                        } else {
-                            $year = date('Y');
-                            //Get all reports by year
-                            $sqlreportsbyYear = "SELECT * FROM uploaded WHERE YEAR(uploadDate) = '$year' ORDER BY uploadDate ASC";
-                            $reportsbyYear = $dbconn->query($sqlreportsbyYear);
-                            //Separate and print reports by month
-                            echo "<h3><b>January " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '01') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>February " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '02') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>March " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '03') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>April " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '04') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>May " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '05') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>June " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '06') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>July " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '07') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>August " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '08') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>September " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '09') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>October " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '10') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>November " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '11') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                            echo "<h3><b>December " .$year ."</b></h3><br/>";
-                            foreach ($reportsbyYear as $rowR) {
-                                //explode name of file to extract the month
-                                $m = explode('-', $rowR['uploadName']);
-                                $month = $m[3];
-                                if ($month == '12') {
-                                    echo "<a href='" .$rowR['link'] ."' class='wrapLink' target='_blank'>" .$rowR['uploadName'] ."</a><br/>";
-                                }
-                            } echo "<br/>";
-                        }
-                    }
-                ?>
+                        echo "<a href='jstaReport.php?jsaTaskId=" .$jsTa['jsaTaskId'] ."' target='_blank'>" .$jobDate ." - " .$user['firstName'] ." " .$user['lastName'] ." - " .$jsTa['customer'] ."</a><br>";
+                    } ?>
+                <?php } ?>
             </div><!--end mbr1content-->
         </div><!--end mbodyright-->
         <?php include_once "includes/inc.shlinks.php"; ?>

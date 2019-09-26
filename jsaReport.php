@@ -9,7 +9,7 @@
     }
 
 
-    $jsaId = 3;
+    $jsaId = 8;
 
     require_once 'connectdb.php';
     $jsa = getJSARep ($dbconn, $jsaId);
@@ -54,6 +54,21 @@
             color: #9c9c9c;
             letter-spacing: 2px;
         }
+        .printSpace {
+            display: none;
+        }
+
+        @media print {
+            .page-break {
+                display: block;
+                page-break-before: always;
+            }
+            .printSpace {
+                display: block;
+            }
+        }
+
+
     </style>
     <script>
         function disableSubmit() {
@@ -526,7 +541,7 @@
                         &nbsp;
                     </div>
                 </div><!--end row-->
-                <div class="row">
+                <div class="row mt-md-2">
                     <div class="col-md-1">Other:</div>
                     <div class="col-md-11"><?php echo $jsa['otherSpecialConditionsOrConcerns']; ?></div>
                 </div><!--end row-->
@@ -569,85 +584,65 @@
                         </div>
                     </div><!--end row-->
                     <div class="row">
-                        <div class="col-md-2"><?php echo $jsa['345kvSafeDistance']; ?></div>
+                        <div class="col-md-2">Safe Distance:</div>
+                        <div class="col-md-2"><?php if(!empty($jsa['345kvSafeDistance'])) {echo $jsa['345kvSafeDistance'];} else {echo "N/A";}  ?></div>
+                        <div class="col-md-2"><?php if(!empty($jsa['138kvSafeDistance'])) {echo $jsa['138kvSafeDistance'];} else {echo "N/A";}  ?></div>
+                        <div class="col-md-2"><?php if(!empty($jsa['69kvSafeDistance'])) {echo $jsa['69kvSafeDistance'];} else {echo "N/A";}  ?></div>
+                        <div class="col-md-2"><?php if(!empty($jsa['24_9kvSafeDistance'])) {echo $jsa['24_9kvSafeDistance'];} else {echo "N/A";}  ?></div>
                     </div><!--end row-->
-
-                    <div class="form-row justify-content-md-center">
-                        <div class="col-md-2 border border-dark">
-                            <input type="text" id="345kvSafeDistance" name="345kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        </div>
-                        <div class="col-md-2 border border-dark">
-                            <input type="text" id="138kvSafeDistance" name="138kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        </div>
-                        <div class="col-md-2 border border-dark">
-                            <input type="text" id="69kvSafeDistance" name="69kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        </div>
-                        <div class="col-md-2 border border-dark">
-                            <input type="text" id="24_9kvSafeDistance" name="24_9kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        </div>
-                    </div><!--end row-->
-
-
-
                     <div class="form-row justify-content-md-center mt-3">
                         <div class="col-md-2 border border-dark">
                             <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
                                 <label for="14_4kv" class="form-check-label form-control-sm">
-                                    <input id="14_4kv" name="14_4kv" type="checkbox" class="form-check-input" value="1">14.4 kv
+                                    <input id="14_4kv" name="14_4kv" type="checkbox" class="form-check-input" <?php if ($jsa['14_4kv'] === '1') {echo "checked=checked";} ?> disabled>14.4 kv
                                 </label>
                             </div>
                         </div>
                         <div class="col-md-2 border border-dark">
                             <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
                                 <label for="12_5kv" class="form-check-label form-control-sm">
-                                    <input id="12_5kv" name="12_5kv" type="checkbox" class="form-check-input" value="1">12.5 kv
+                                    <input id="12_5kv" name="12_5kv" type="checkbox" class="form-check-input" <?php if ($jsa['12_5kv'] === '1') {echo "checked=checked";} ?> disabled>12.5 kv
                                 </label>
                             </div>
                         </div>
                         <div class="col-md-2 border border-dark">
                             <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
                                 <label for="7_2kv" class="form-check-label form-control-sm">
-                                    <input id="7_2kv" name="7_2kv" type="checkbox" class="form-check-input" value="1">7.2 kv
+                                    <input id="7_2kv" name="7_2kv" type="checkbox" class="form-check-input" <?php if ($jsa['7_2kv'] === '1') {echo "checked=checked";} ?> disabled>7.2 kv
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-2 ">
+                        <div class="col-md-2 d-none d-md-block">
                             &nbsp;
                         </div>
                     </div><!--end row-->
-                    <div class="form-row justify-content-md-center">
-                        <div class="col-md-2 border border-dark">
-                            <input type="text" id="14_4kvSafeDistance" name="14_4kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        </div>
-                        <div class="col-md-2 border border-dark">
-                            <input type="text" id="12_5kvSafeDistance" name="12_5kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        </div>
-                        <div class="col-md-2 border border-dark">
-                            <input type="text" id="7_2kvSafeDistance" name="7_2kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        </div>
-                        <div class="col-md-2">
-                            &nbsp;
-                        </div>
+                    <div class="row">
+                        <div class="col-md-2">Safe Distance:</div>
+                        <div class="col-md-2"><?php if(!empty($jsa['14_4kvSafeDistance'])) {echo $jsa['14_4kvSafeDistance'];} else {echo "N/A";}  ?></div>
+                        <div class="col-md-2"><?php if(!empty($jsa['12_5kvSafeDistance'])) {echo $jsa['12_5kvSafeDistance'];} else {echo "N/A";}  ?></div>
+                        <div class="col-md-2"><?php if(!empty($jsa['7_2kvSafeDistance'])) {echo $jsa['7_2kvSafeDistance'];} else {echo "N/A";}  ?></div>
+                        <div class="col-md-2 d-none d-md-block">&nbsp;</div>
                     </div><!--end row-->
+
                     <div class="form-row justify-content-md-center mt-3">
                         <div class="col-md-2 border border-dark">
                             <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
                                 <label for="480vac" class="form-check-label form-control-sm">
-                                    <input id="480vac" name="480vac" type="checkbox" class="form-check-input" value="1">480 VAC
+                                    <input id="480vac" name="480vac" type="checkbox" class="form-check-input" <?php if ($jsa['480vac'] === '1') {echo "checked=checked";} ?> disabled>480 VAC
                                 </label>
                             </div>
                         </div>
                         <div class="col-md-2 border border-dark">
                             <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
                                 <label for="120vac" class="form-check-label form-control-sm">
-                                    <input id="120vac" name="120vac" type="checkbox" class="form-check-input" value="1">120 VAC
+                                    <input id="120vac" name="120vac" type="checkbox" class="form-check-input" <?php if ($jsa['120vac'] === '1') {echo "checked=checked";} ?> disabled>120 VAC
                                 </label>
                             </div>
                         </div>
                         <div class="col-md-2 border border-dark">
                             <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
                                 <label for="130vdc" class="form-check-label form-control-sm">
-                                    <input id="130vdc" name="130vdc" type="checkbox" class="form-check-input" value="1">130 VDC
+                                    <input id="130vdc" name="130vdc" type="checkbox" class="form-check-input" <?php if ($jsa['130vdc'] === '1') {echo "checked=checked";} ?> disabled>130 VDC
                                 </label>
                             </div>
                         </div>
@@ -655,19 +650,12 @@
                             &nbsp;
                         </div>
                     </div><!--end row-->
-                    <div class="form-row justify-content-md-center">
-                        <div class="col-md-2 border border-dark">
-                            <input type="text" id="480vacSafeDistance" name="480vacSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        </div>
-                        <div class="col-md-2 border border-dark">
-                            <input type="text" id="120vacSafeDistance" name="120vacSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        </div>
-                        <div class="col-md-2 border border-dark">
-                            <input type="text" id="130vdcSafeDistance" name="130vdcSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                        </div>
-                        <div class="col-md-2">
-                            &nbsp;
-                        </div>
+                    <div class="row">
+                        <div class="col-md-2">Safe Distance:</div>
+                        <div class="col-md-2"><?php if(!empty($jsa['480vacSafeDistance'])) {echo $jsa['480vacSafeDistance'];} else {echo "N/A";}  ?></div>
+                        <div class="col-md-2"><?php if(!empty($jsa['120vacSafeDistance'])) {echo $jsa['120vacSafeDistance'];} else {echo "N/A";}  ?></div>
+                        <div class="col-md-2"><?php if(!empty($jsa['130vdcSafeDistance'])) {echo $jsa['130vdcSafeDistance'];} else {echo "N/A";}  ?></div>
+                        <div class="col-md-2 d-none d-md-block">&nbsp;</div>
                     </div><!--end row-->
                 </div><!--end showMD-->
                 <!--this section is only seen sm and below due to the arrangement of the "Safe Distance" columns underneath the voltage checkboxes-->
@@ -675,373 +663,389 @@
                     <label for="345kv" class="form-check-label form-control-sm ml-3">
                         <input id="345kv" name="345kv" type="checkbox" class="form-check-input" value="1">345 kv
                     </label>
-                    <input type="text" id="345kvSafeDistance" name="345kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                    <div>Safe Distance: <?php if(!empty($jsa['345kvSafeDistance'])) {echo $jsa['345kvSafeDistance'];} else {echo "N/A";}  ?></div>
+
                     <label for="138kv" class="form-check-label form-control-sm ml-3">
                         <input id="138kv" name="138kv" type="checkbox" class="form-check-input" value="1">138 kv
                     </label>
-                    <input type="text" id="138kvSafeDistance" name="138kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                    <div>Safe Distance: <?php if(!empty($jsa['138kvSafeDistance'])) {echo $jsa['138kvSafeDistance'];} else {echo "N/A";}  ?></div>
                     <label for="69kv" class="form-check-label form-control-sm ml-3">
                         <input id="69kv" name="69kv" type="checkbox" class="form-check-input" value="1">69 kv
                     </label>
-                    <input type="text" id="69kvSafeDistance" name="69kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                    <div>Safe Distance: <?php if(!empty($jsa['69kvSafeDistance'])) {echo $jsa['69kvSafeDistance'];} else {echo "N/A";}  ?></div>
                     <label for="24_9kv" class="form-check-label form-control-sm ml-3">
                         <input id="24_9kv" name="24_9kv" type="checkbox" class="form-check-input" value="1">24.9 kv
                     </label>
-                    <input type="text" id="24_9kvSafeDistance" name="24_9kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                    <div>Safe Distance: <?php if(!empty($jsa['24_9kvSafeDistance'])) {echo $jsa['24_9kvSafeDistance'];} else {echo "N/A";}  ?></div>
                     <label for="14_4kv" class="form-check-label form-control-sm ml-3">
                         <input id="14_4kv" name="14_4kv" type="checkbox" class="form-check-input" value="1">14.4 kv
                     </label>
-                    <input type="text" id="14_4kvSafeDistance" name="14_4kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                    <div>Safe Distance: <?php if(!empty($jsa['14_4kvSafeDistance'])) {echo $jsa['14_4kvSafeDistance'];} else {echo "N/A";}  ?></div>
                     <label for="12_5kv" class="form-check-label form-control-sm ml-3">
                         <input id="12_5kv" name="12_5kv" type="checkbox" class="form-check-input" value="1">12.5 kv
                     </label>
-                    <input type="text" id="12_5kvSafeDistance" name="12_5kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                    <div>Safe Distance: <?php if(!empty($jsa['12_5kvSafeDistance'])) {echo $jsa['12_5kvSafeDistance'];} else {echo "N/A";}  ?></div>
                     <label for="7_2kv" class="form-check-label form-control-sm ml-3">
                         <input id="7_2kv" name="7_2kv" type="checkbox" class="form-check-input" value="1">7.2 kv
                     </label>
-                    <input type="text" id="7_2kvSafeDistance" name="7_2kvSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
-                    <label for="14-4kv" class="form-check-label form-control-sm ml-3">
+                    <div>Safe Distance: <?php if(!empty($jsa['7_2kvSafeDistance'])) {echo $jsa['7_2kvSafeDistance'];} else {echo "N/A";}  ?></div>
+                    <label for="480vac" class="form-check-label form-control-sm ml-3">
                         <input id="480vac" name="480vac" type="checkbox" class="form-check-input" value="1">480 VAC
                     </label>
-                    <input type="text" id="480vacSafeDistance" name="480vacSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                    <div>Safe Distance: <?php if(!empty($jsa['480vacSafeDistance'])) {echo $jsa['480vacSafeDistance'];} else {echo "N/A";}  ?></div>
                     <label for="120vac" class="form-check-label form-control-sm ml-3">
                         <input id="120vac" name="120vac" type="checkbox" class="form-check-input" value="1">120 VAC
                     </label>
-                    <input type="text" id="120vacSafeDistance" name="120vacSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                    <div>Safe Distance: <?php if(!empty($jsa['120vacSafeDistance'])) {echo $jsa['120vacSafeDistance'];} else {echo "N/A";}  ?></div>
                     <label for="130vdc" class="form-check-label form-control-sm ml-3">
                         <input id="130vdc" name="130vdc" type="checkbox" class="form-check-input" value="1">130 VDC
                     </label>
-                    <input type="text" id="130vdcSafeDistance" name="130vdcSafeDistance" class="form-control form-control-sm" placeholder="Safe Distance"/>
+                    <div>Safe Distance: <?php if(!empty($jsa['130vdcSafeDistance'])) {echo $jsa['130vdcSafeDistance'];} else {echo "N/A";}  ?></div>
                 </div><!--end showMobile-->
                 <div class="form-row justify-content-md-center mt-md-3">
                     <div class="col-md-3">
                         <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
                             <label for="lightning" class="form-check-label form-control-sm">
-                                <input id="lightning" name="lightning" type="checkbox" class="form-check-input " value="1">Lightning
+                                <input id="lightning" name="lightning" type="checkbox" class="form-check-input " <?php if ($jsa['lightning'] === '1') {echo "checked=checked";} ?> disabled>Lightning
                             </label>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
                             <label for="induction" class="form-check-label form-control-sm">
-                                <input id="induction" name="induction" type="checkbox" class="form-check-input" value="1">Induction
+                                <input id="induction" name="induction" type="checkbox" class="form-check-input" <?php if ($jsa['induction'] === '1') {echo "checked=checked";} ?> disabled>Induction
                             </label>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
                             <label for="faultOnLine_Apparatus" class="form-check-label form-control-sm pl-0">
-                                <input id="faultOnLine_Apparatus" name="faultOnLine_Apparatus" type="checkbox" class="form-check-input" value="1">Fault on Line/Apparatus
+                                <input id="faultOnLine_Apparatus" name="faultOnLine_Apparatus" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['faultOnLine_Apparatus'] === '1') {echo "checked=checked";} ?> disabled>Fault on Line/Apparatus
                             </label>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
                             <label for="static" class="form-check-label form-control-sm">
-                                <input id="static" name="static" type="checkbox" class="form-check-input" value="1">Static
+                                <input id="static" name="static" type="checkbox" class="form-check-input" <?php if ($jsa['static'] === '1') {echo "checked=checked";} ?> disabled>Static
                             </label>
                         </div>
                     </div>
                 </div><!--end row-->
-                <div class="form-row justify-content-md-center mt-md-1">
-                    <label for="otherEnergySource" class="form-control-label form-control-sm col-md-1">Other:</label>
-                    <input type="text" id="otherEnergySource" name="otherEnergySource" class="form-control form-control-sm col-md-10"/>
+                <div class="row mt-md-2">
+                    <div class="col-md-1">Other:</div>
+                    <div class="col-md-10"><?php echo $jsa['otherEnergySource'] ?></div>
                 </div><!--end row-->
             </div><!--end energy sources-->
-
-                <div class="row mt-md-4">
-                    <div class="col-md-6"><h5>Other Energy Sources:</h5></div>
-                </div><!--end row--->
-                <div id="otherEnergy" class="form-group">
-                    <div class="form-row justify-content-md-center">
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="hydraulic" class="form-check-label form-control-sm">
-                                    <input id="hydraulic" name="hydraulic" type="checkbox" class="form-check-input" value="1">Hydraulic
-                                </label>
-                            </div>
+            <!--This spacer is put here to allow for a page break when printing the report -->
+            <div class="page-break"></div>
+            <div class="printSpace" style="height: 50px;">&nbsp;</div>
+            <div class="row mt-md-5">
+                <div class="col-md-6"><h5>Other Energy Sources:</h5></div>
+            </div><!--end row--->
+            <div id="otherEnergy" class="form-group">
+                <div class="form-row justify-content-md-center">
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="hydraulic" class="form-check-label form-control-sm">
+                                <input id="hydraulic" name="hydraulic" type="checkbox" class="form-check-input" <?php if ($jsa['hydraulic'] === '1') {echo "checked=checked";} ?> disabled>Hydraulic
+                            </label>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="pneumatic" class="form-check-label form-control-sm">
-                                    <input id="pneumatic" name="pneumatic" type="checkbox" class="form-check-input" value="1">Pneumatic
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="chemical" class="form-check-label form-control-sm">
-                                    <input id="chemical" name="chemical" type="checkbox" class="form-check-input" value="1">Chemical
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="mechanical" class="form-check-label form-control-sm">
-                                    <input id="mechanical" name="mechanical" type="checkbox" class="form-check-input" value="1">Mechanical
-                                </label>
-                            </div>
-                        </div>
-                    </div><!--end from row-->
-                </div><!--end group other energy-->
-                <div class="row mt-md-4">
-                    <div class="col-md-6"><h5>Controls to be Used:</h5></div>
-                </div><!--end row--->
-                <div id="controlsUsed" class="form-group">
-                    <div class="form-row justify-content-md-center">
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="notifySocc" class="form-check-label form-control-sm">
-                                    <input id="notifySocc" name="notifySocc" type="checkbox" class="form-check-input" value="1">Notify Socc
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="notifyCustomers" class="form-check-label form-control-sm">
-                                    <input id="notifyCustomers" name="notifyCustomers" type="checkbox" class="form-check-input" value="1">Notify Customers
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="vdi" class="form-check-label form-control-sm">
-                                    <input id="vdi" name="vdi" type="checkbox" class="form-check-input" value="1">VDI
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="grounding" class="form-check-label form-control-sm">
-                                    <input id="grounding" name="grounding" type="checkbox" class="form-check-input" value="1">Grounding
-                                </label>
-                            </div>
-                        </div>
-                    </div><!--end row-->
-                    <div class="form-row justify-content-md-center">
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="barrier" class="form-check-label form-control-sm">
-                                    <input id="barrier" name="barrier" type="checkbox" class="form-check-input" value="1">Barrier
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="lockout_tagout" class="form-check-label form-control-sm">
-                                    <input id="lockout_tagout" name="lockout_tagout" type="checkbox" class="form-check-input" value="1">Lockout/Tagout
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="liveLineTool" class="form-check-label form-control-sm">
-                                    <input id="liveLineTool" name="liveLineTool" type="checkbox" class="form-check-input" value="1">Live Line Tool
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="coverup" class="form-check-label form-control-sm">
-                                    <input id="coverup" name="coverup" type="checkbox" class="form-check-input" value="1">Cover-up
-                                </label>
-                            </div>
-                        </div>
-                    </div><!--end row-->
-                    <div class="form-row justify-content-md-center">
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="safeDistance" class="form-check-label form-control-sm">
-                                    <input id="safeDistance" name="safeDistance" type="checkbox" class="form-check-input" value="1">Safe Distance
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="confinedSpace" class="form-check-label form-control-sm">
-                                    <input id="confinedSpace" name="confinedSpace" type="checkbox" class="form-check-input" value="1">Confined Space
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="clearanceNumber" class="form-check-label form-control-sm">
-                                    <input id="clearanceNumber" name="clearanceNumber" type="checkbox" class="form-check-input" value="1">Clearance #
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="hotLineHoldNumber" class="form-check-label form-control-sm">
-                                    <input id="hotLineHoldNumber" name="hotLineHoldNumber" type="checkbox" class="form-check-input" value="1">Hot Line Hold #
-                                </label>
-                            </div>
-                        </div>
-                    </div><!--end row-->
-                    <div class="form-row justify-content-md-center mt-md-1">
-                        <label for="otherControlsToBeUsed" class="form-control-label form-control-sm col-md-1">Other:</label>
-                        <input type="text" id="otherControlsToBeUsed" name="otherControlsToBeUsed" class="form-control form-control-sm col-md-10"/>
-                    </div><!--end from row-->
-                </div><!--end form group controls used-->
-                <div class="row mt-md-4">
-                    <div class="col-md-6"><h5>Personal Protective Equipment:</h5></div>
-                    <div class="col-md-4 small font-italic">(Select all that apply)</div>
-                </div><!--end row--->
-                <div id="personalProtective" class="form-group">
-                    <div class="form-row justify-content-md-center">
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="hardHat" class="form-check-label form-control-sm">
-                                    <input id="hardHat" name="hardHat" type="checkbox" class="form-check-input" value="1">Hard Hat
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="boots" class="form-check-label form-control-sm">
-                                    <input id="boots" name="boots" type="checkbox" class="form-check-input" value="1">Boots
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="leatherGloves" class="form-check-label form-control-sm">
-                                    <input id="leatherGloves" name="leatherGloves" type="checkbox" class="form-check-input" value="1">Leather Gloves
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="harness_lanyard" class="form-check-label form-control-sm">
-                                    <input id="harness_lanyard" name="harness_lanyard" type="checkbox" class="form-check-input" value="1">Harness/Lanyard
-                                </label>
-                            </div>
-                        </div>
-                    </div><!--end form row-->
-                    <div class="form-row justify-content-md-center">
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="safetyGlasses" class="form-check-label form-control-sm">
-                                    <input id="safetyGlasses" name="safetyGlasses" type="checkbox" class="form-check-input" value="1">Safety Glasses
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="cottonCLothing" class="form-check-label form-control-sm">
-                                    <input id="cottonCLothing" name="cottonCLothing" type="checkbox" class="form-check-input" value="1">Cotton Clothing
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="rubberGloves_sleeves" class="form-check-label form-control-sm">
-                                    <input id="rubberGloves_sleeves" name="rubberGloves_sleeves" type="checkbox" class="form-check-input" value="1">Rubber Gloves/Sleeves
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="hearingProtection" class="form-check-label form-control-sm">
-                                    <input id="hearingProtection" name="hearingProtection" type="checkbox" class="form-check-input" value="1">Hearing Protection
-                                </label>
-                            </div>
-                        </div>
-                    </div><!--end form row-->
-                    <div class="form-row justify-content-md-center">
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="frc" class="form-check-label form-control-sm">
-                                    <input id="frc" name="frc" type="checkbox" class="form-check-input" value="1">FRC
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="safetyVest" class="form-check-label form-control-sm">
-                                    <input id="safetyVest" name="safetyVest" type="checkbox" class="form-check-input" value="1">Safety Vest
-                                </label>
-                            </div>
-                        </div>
-                        <label for="otherPersonalProtectiveEquipment" class="form-control-label form-control-sm col-md-1">Other:</label>
-                        <input type="text" id="otherPersonalProtectiveEquipment" name="otherPersonalProtectiveEquipment" class="form-control form-control-sm col-md-5"/>
-                    </div><!--end form row-->
-                </div><!--end form group personal protective-->
-                <div class="row mt-md-4">
-                    <div class="col-md-8"><h5>Personal Protective Equipment Visual FR Clothing Check:</h5></div>
-                    <div class="col-md-4 small font-italic">(Select all that apply)</div>
-                </div><!--end row--->
-                <div id="ppeVisual" class="form-group">
-                    <div class="form-row justify-content-md-center">
-                        <div class="col-md-5">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="frShirtTuckedIn" class="form-check-label form-control-sm">
-                                    <input id="frShirtTuckedIn" name="frShirtTuckedIn" type="checkbox" class="form-check-input" value="1">FR Shirt Tucked In
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="clothingHasNoTears" class="form-check-label form-control-sm">
-                                    <input id="clothingHasNoTears" name="clothingHasNoTears" type="checkbox" class="form-check-input" value="1">Clothing has no Tears/Holes/Frayed Edges
-                                </label>
-                            </div>
-                        </div>
-                    </div><!--end form row-->
-                    <div class="form-row justify-content-md-center">
-                        <div class="col-md-5">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="noContactWithBleachOrDEET" class="form-check-label form-control-sm">
-                                    <input id="noContactWithBleachOrDEET" name="noContactWithBleachOrDEET" type="checkbox" class="form-check-input" value="1">No Contact With Bleach or DEET
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
-                                <label for="noStainsOnClothing" class="form-check-label form-control-sm">
-                                    <input id="noStainsOnClothing" name="noStainsOnClothing" type="checkbox" class="form-check-input" value="1">No Stains on Clothing
-                                </label>
-                            </div>
-                        </div>
-                    </div><!--end form row-->
-                </div><!--end form group ppe Visual-->
-                <div class="row mt-md-4">
-                    <div class="col-md-8"><h5>Additional Information As Necessary:</h5></div>
-                </div><!--end row--->
-                <div id="additionInfo" class="form-group">
-                    <textarea rows="10" cols="10" id="additionInformationAsNecessary" name="additionInformationAsNecessary" class="form-control form-control-sm"></textarea>
-                </div><!--end form group additional information-->
-                <div class="row mt-md-4">
-                    <div class="col-md-8"><h5>Crew Members (and Others) Participating in Job Briefings:</h5></div>
-                </div><!--end row--->
-                <div id="participants" class="form-group">
-                    <div class="form-row">
-                        <input type="text" id="crewMemberName1" name="crewMemberName1" class=" col-md-6 form-control form-control-sm" placeholder="Crew Member #1"/>
-                        <input type="text" id="crewMemberName2" name="crewMemberName2" class=" col-md-6 form-control form-control-sm" placeholder="Crew Member #2"/>
-                        <input type="text" id="crewMemberName3" name="crewMemberName3" class=" col-md-6 form-control form-control-sm" placeholder="Crew Member #3"/>
-                        <input type="text" id="crewMemberName4" name="crewMemberName4" class=" col-md-6 form-control form-control-sm" placeholder="Crew Member #4"/>
-                        <input type="text" id="crewMemberName5" name="crewMemberName5" class=" col-md-6 form-control form-control-sm" placeholder="Crew Member #5"/>
-                        <input type="text" id="crewMemberName6" name="crewMemberName5" class=" col-md-6 form-control form-control-sm" placeholder="Crew Member #6"/>
-                        <input type="text" id="crewMemberName7" name="crewMemberName5" class=" col-md-6 form-control form-control-sm" placeholder="Crew Member #7"/>
-                        <input type="text" id="crewMemberName8" name="crewMemberName5" class=" col-md-6 form-control form-control-sm" placeholder="Crew Member #8"/>
-                        <input type="text" id="crewMemberName9" name="crewMemberName5" class=" col-md-6 form-control form-control-sm" placeholder="Crew Member #9"/>
-                        <input type="text" id="crewMemberName10" name="crewMemberName5" class=" col-md-6 form-control form-control-sm" placeholder="Crew Member #10"/>
-                    </div><!--end form row-->
-                </div><!--end form group participants-->
-                <div class="row mt-md-5 justify-content-md-center">
-                    <div class="col-md-7 mb-1">
-                        <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)"> I, <?php echo $assoc['firstName'] ." " .$assoc['lastName']; ?>, submit this form as accurate and true.
-                        <br/><span class="small font-italic">(Click checkbox to confirm)</span>
                     </div>
-                    <div class="col-md-2 mr-md-3 mb-1">
-                        <input name="submit" id="submit" class="btn btn-success" type="submit" value="SUBMIT"/>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="pneumatic" class="form-check-label form-control-sm">
+                                <input id="pneumatic" name="pneumatic" type="checkbox" class="form-check-input" <?php if ($jsa['pneumatic'] === '1') {echo "checked=checked";} ?> disabled>Pneumatic
+                            </label>
+                        </div>
                     </div>
-                    <div class="col-md-1 mb-1">
-                        <button class="btn btn-success" type="button" onclick="window.history.back()">GO BACK</button>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="chemical" class="form-check-label form-control-sm">
+                                <input id="chemical" name="chemical" type="checkbox" class="form-check-input" <?php if ($jsa['chemical'] === '1') {echo "checked=checked";} ?> disabled>Chemical
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="mechanical" class="form-check-label form-control-sm">
+                                <input id="mechanical" name="mechanical" type="checkbox" class="form-check-input" <?php if ($jsa['mechanical'] === '1') {echo "checked=checked";} ?> disabled>Mechanical
+                            </label>
+                        </div>
                     </div>
                 </div><!--end row-->
+            </div><!--end group other energy-->
 
-            <div id="procedures" class="mt-md-3 small">
+            <div class="row mt-md-4">
+                <div class="col-md-6"><h5>Controls to be Used:</h5></div>
+            </div><!--end row--->
+            <div id="controlsUsed" class="form-group">
+                <div class="form-row justify-content-md-center">
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="notifySocc" class="form-check-label form-control-sm">
+                                <input id="notifySocc" name="notifySocc" type="checkbox" class="form-check-input" <?php if ($jsa['notifySocc'] === '1') {echo "checked=checked";} ?> disabled>Notify Socc
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="notifyCustomers" class="form-check-label form-control-sm">
+                                <input id="notifyCustomers" name="notifyCustomers" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['notifyCustomers'] === '1') {echo "checked=checked";} ?> disabled>Notify Customers
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="vdi" class="form-check-label form-control-sm">
+                                <input id="vdi" name="vdi" type="checkbox" class="form-check-input" <?php if ($jsa['vdi'] === '1') {echo "checked=checked";} ?> disabled>VDI
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="grounding" class="form-check-label form-control-sm">
+                                <input id="grounding" name="grounding" type="checkbox" class="form-check-input" <?php if ($jsa['grounding'] === '1') {echo "checked=checked";} ?> disabled>Grounding
+                            </label>
+                        </div>
+                    </div>
+                </div><!--end row-->
+                <div class="form-row justify-content-md-center">
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="barrier" class="form-check-label form-control-sm">
+                                <input id="barrier" name="barrier" type="checkbox" class="form-check-input" <?php if ($jsa['barrier'] === '1') {echo "checked=checked";} ?> disabled>Barrier
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="lockout_tagout" class="form-check-label form-control-sm">
+                                <input id="lockout_tagout" name="lockout_tagout" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['lockout_tagout'] === '1') {echo "checked=checked";} ?> disabled>Lockout/Tagout
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="liveLineTool" class="form-check-label form-control-sm">
+                                <input id="liveLineTool" name="liveLineTool" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['liveLineTool'] === '1') {echo "checked=checked";} ?> disabled>Live Line Tool
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="coverup" class="form-check-label form-control-sm">
+                                <input id="coverup" name="coverup" type="checkbox" class="form-check-input" <?php if ($jsa['coverup'] === '1') {echo "checked=checked";} ?> disabled>Cover-up
+                            </label>
+                        </div>
+                    </div>
+                </div><!--end row-->
+                <div class="form-row justify-content-md-center">
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="safeDistance" class="form-check-label form-control-sm">
+                                <input id="safeDistance" name="safeDistance" type="checkbox" class="form-check-input" <?php if ($jsa['safeDistance'] === '1') {echo "checked=checked";} ?> disabled>Safe Distance
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="confinedSpace" class="form-check-label form-control-sm">
+                                <input id="confinedSpace" name="confinedSpace" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['confinedSpace'] === '1') {echo "checked=checked";} ?> disabled>Confined Space
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="clearanceNumber" class="form-check-label form-control-sm">
+                                <input id="clearanceNumber" name="clearanceNumber" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['clearanceNumber'] === '1') {echo "checked=checked";} ?> disabled>Clearance #
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="hotLineHoldNumber" class="form-check-label form-control-sm">
+                                <input id="hotLineHoldNumber" name="hotLineHoldNumber" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['hotLineHoldNumber'] === '1') {echo "checked=checked";} ?> disabled>Hot Line Hold #
+                            </label>
+                        </div>
+                    </div>
+                </div><!--end row-->
+                <div class="row mt-md-2">
+                    <div class="col-md-1">Other:</div>
+                    <div class="col-md-10"><?php echo $jsa['otherControlsToBeUsed']; ?></div>
+                </div><!--end row-->
+            </div><!--end group controls used-->
+
+            <div class="row mt-md-4">
+                <div class="col-md-6"><h5>Personal Protective Equipment:</h5></div>
+            </div><!--end row--->
+            <div id="personalProtective" class="form-group">
+                <div class="form-row justify-content-md-center">
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="hardHat" class="form-check-label form-control-sm">
+                                <input id="hardHat" name="hardHat" type="checkbox" class="form-check-input" <?php if ($jsa['hardHat'] === '1') {echo "checked=checked";} ?> disabled>Hard Hat
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="boots" class="form-check-label form-control-sm">
+                                <input id="boots" name="boots" type="checkbox" class="form-check-input" <?php if ($jsa['boots'] === '1') {echo "checked=checked";} ?> disabled>Boots
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="leatherGloves" class="form-check-label form-control-sm">
+                                <input id="leatherGloves" name="leatherGloves" type="checkbox" class="form-check-input" <?php if ($jsa['leatherGloves'] === '1') {echo "checked=checked";} ?> disabled>Leather Gloves
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="harness_lanyard" class="form-check-label form-control-sm">
+                                <input id="harness_lanyard" name="harness_lanyard" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['harness_lanyard'] === '1') {echo "checked=checked";} ?> disabled>Harness/Lanyard
+                            </label>
+                        </div>
+                    </div>
+                </div><!--end row-->
+                <div class="form-row justify-content-md-center">
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="safetyGlasses" class="form-check-label form-control-sm">
+                                <input id="safetyGlasses" name="safetyGlasses" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['safetyGlasses'] === '1') {echo "checked=checked";} ?> disabled>Safety Glasses
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="cottonClothing" class="form-check-label form-control-sm">
+                                <input id="cottonClothing" name="cottonClothing" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['cottonClothing'] === '1') {echo "checked=checked";} ?> disabled>Cotton Clothing
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="rubberGloves_sleeves" class="form-check-label form-control-sm">
+                                <input id="rubberGloves_sleeves" name="rubberGloves_sleeves" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['rubberGloves_sleeves'] === '1') {echo "checked=checked";} ?> disabled>Rubber Gloves/Sleeves
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="hearingProtection" class="form-check-label form-control-sm">
+                                <input id="hearingProtection" name="hearingProtection" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['hearingProtection'] === '1') {echo "checked=checked";} ?> disabled>Hearing Protection
+                            </label>
+                        </div>
+                    </div>
+                </div><!--end row-->
+                <div class="form-row justify-content-md-center">
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="frc" class="form-check-label form-control-sm">
+                                <input id="frc" name="frc" type="checkbox" class="form-check-input" <?php if ($jsa['frc'] === '1') {echo "checked=checked";} ?> disabled>FRC
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="safetyVest" class="form-check-label form-control-sm">
+                                <input id="safetyVest" name="safetyVest" type="checkbox" class="form-check-input" <?php if ($jsa['safetyVest'] === '1') {echo "checked=checked";} ?> disabled>Safety Vest
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-1">Other:</div>
+                    <div class="col-md-5"><?php echo $jsa['otherPersonalProtectiveEquipment']; ?></div>
+                </div><!--end row-->
+            </div><!--end group personal protective-->
+
+            <div class="row mt-md-4">
+                <div class="col-md-8"><h5>Personal Protective Equipment Visual FR Clothing Check:</h5></div>
+            </div><!--end row--->
+            <div id="ppeVisual" class="form-group">
+                <div class="form-row justify-content-md-center">
+                    <div class="col-md-5">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="frShirtTuckedIn" class="form-check-label form-control-sm">
+                                <input id="frShirtTuckedIn" name="frShirtTuckedIn" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['frShirtTuckedIn'] === '1') {echo "checked=checked";} ?> disabled>FR Shirt Tucked In
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="clothingHasNoTears" class="form-check-label form-control-sm">
+                                <input id="clothingHasNoTears" name="clothingHasNoTears" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['clothingHasNoTears'] === '1') {echo "checked=checked";} ?> disabled>Clothing has no Tears/Holes/Frayed Edges
+                            </label>
+                        </div>
+                    </div>
+                </div><!--end row-->
+                <div class="form-row justify-content-md-center">
+                    <div class="col-md-5">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="noContactWithBleachOrDEET" class="form-check-label form-control-sm">
+                                <input id="noContactWithBleachOrDEET" name="noContactWithBleachOrDEET" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['noContactWithBleachOrDEET'] === '1') {echo "checked=checked";} ?> disabled>No Contact With Bleach or DEET
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-check-inline mt-2 mt-md-0 mb-2 mb-md-0">
+                            <label for="noStainsOnClothing" class="form-check-label form-control-sm">
+                                <input id="noStainsOnClothing" name="noStainsOnClothing" type="checkbox" class="form-check-input"
+                                    <?php if ($jsa['noStainsOnClothing'] === '1') {echo "checked=checked";} ?> disabled>No Stains on Clothing
+                            </label>
+                        </div>
+                    </div>
+                </div><!--end row-->
+            </div><!--end group ppe Visual-->
+
+            <div class="row mt-md-4">
+                <div class="col-md-8"><h5>Additional Information As Necessary:</h5></div>
+            </div><!--end row--->
+            <div class="row justify-content-md-center">
+                <div class="col-md-10"><?php echo $jsa['additionalInformationAsNecessary']; ?></div>
+            </div><!--end row-->
+            <div class="row mt-md-4">
+                <div class="col-md-8"><h5>Crew Members (and Others) Participating in Job Briefings:</h5></div>
+            </div><!--end row--->
+            <div id="participants" class="form-group">
+                <div class="row">
+                    <div class="col-md-6"><?php if (!empty($jsa['crewMemberName1'])) {echo $jsa['crewMemberName1'];}else{echo "&nbsp;";} ?></div>
+                    <div class="col-md-6"><?php if (!empty($jsa['crewMemberName2'])) {echo $jsa['crewMemberName2'];}else{echo "&nbsp;";} ?></div>
+                </div><!--end row-->
+                <div class="row">
+                    <div class="col-md-6"><?php if (!empty($jsa['crewMemberName3'])) {echo $jsa['crewMemberName3'];}else{echo "&nbsp;";} ?></div>
+                    <div class="col-md-6"><?php if (!empty($jsa['crewMemberName4'])) {echo $jsa['crewMemberName4'];}else{echo "&nbsp;";} ?></div>
+                </div><!--end row-->
+                <div class="row">
+                    <div class="col-md-6"><?php if (!empty($jsa['crewMemberName5'])) {echo $jsa['crewMemberName5'];}else{echo "&nbsp;";} ?></div>
+                    <div class="col-md-6"><?php if (!empty($jsa['crewMemberName6'])) {echo $jsa['crewMemberName6'];}else{echo "&nbsp;";} ?></div>
+                </div><!--end row-->
+                <div class="row">
+                    <div class="col-md-6"><?php if (!empty($jsa['crewMemberName7'])) {echo $jsa['crewMemberName7'];}else{echo "&nbsp;";} ?></div>
+                    <div class="col-md-6"><?php if (!empty($jsa['crewMemberName8'])) {echo $jsa['crewMemberName8'];}else{echo "&nbsp;";} ?></div>
+                </div><!--end row-->
+                <div class="row">
+                    <div class="col-md-6"><?php if (!empty($jsa['crewMemberName9'])) {echo $jsa['crewMemberName9'];}else{echo "&nbsp;";} ?></div>
+                    <div class="col-md-6"><?php if (!empty($jsa['crewMemberName10'])) {echo $jsa['crewMemberName10'];}else{echo "&nbsp;";} ?></div>
+                </div><!--end row-->
+            </div><!--end group participants-->
+            <div id="procedures" class="small">
                 <p><span class="font-weight-bold">Procedures:</span> A job briefing, or tailboard session, is a meeting that takes place before the work begins to discuss the work, procedures, hazards,
                 safety controls, and other information to assist the worker or crew. The assessment and job briefing is typically done by the person in charge of the work. The briefing helps to define how
                 the work will be performed, who is involved, individual responsibilities, etc. This job briefing procedure is intended to be applied to all work, but is focused on field work and jobs of
@@ -1053,6 +1057,11 @@
                 <p><span class="font-weight-bold">Recordkeeping:</span> Completed forms shall be maintained for the work day. They should be turned into the responsible safety officer weekly (RSO).
                  If an incident or near miss has occurred, the form shall be attached to the incident report and turned into RSO.</p>
             </div><!--end procedures-->
+            <div class="row mt-md-5 justify-content-md-center">
+                <div class="col-md-1 mb-1">
+<!--                    <button class="btn btn-success" type="button" onclick="window.history.back()">GO BACK</button>-->
+                </div>
+            </div><!--end row-->
         </div><!--end container-fluid-->
     </div><!--end wrapper-->
 </body>
