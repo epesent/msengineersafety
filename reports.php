@@ -13,6 +13,7 @@
         $divisionName = mysqli_fetch_assoc($divName);
         $jsaReports = getDivJsaReports ($dbconn, $divisionId, $year);
         $jsTaReports = getDivJsaTReports ($dbconn, $divisionId, $year);
+        $vehicleReports = getDivVehReports ($dbconn, $divisionId, $year);
     }
 
     $allDivisions = getDivisions ($dbconn);
@@ -87,7 +88,7 @@ try {
                     <input type="submit" id="go" name="go" class="btn3" value="GO"/>
                 </form><br/>
                 <?php if (isset($_GET['divisionId'])) { ?>
-                    <h2 style="margin: 20px 0 10px 0;">Job Safety Analysis Reports - <?php echo $year; ?></h2>
+                    <h2 style="margin: 20px 0 10px 0;">Job Safety Analysis Reports (JSA - PW) - <?php echo $year; ?></h2>
                     <?php foreach ($jsaReports as $jsa) {
                         $date = strtotime($jsa['jobDate']);
                         $jobDate = date("m/d/Y", $date);
@@ -96,7 +97,7 @@ try {
                         echo "<a href='jsaReport.php?jsaId=" .$jsa['jsaId'] ."' target='_blank'>" .$jobDate ." - " .$user['firstName'] ." " .$user['lastName'] ." - " .$jsa['workLocation'] ."</a><br>";
                     } ?>
 
-                    <h2 style="margin: 20px 0 10px 0;">Job Safety Task Analysis Reports - <?php echo $year; ?></h2>
+                    <h2 style="margin: 20px 0 10px 0;">Job Safety Analysis Reports (JSA - M&S Engineering) - <?php echo $year; ?></h2>
                     <?php foreach ($jsTaReports as $jsTa) {
                         $date = strtotime($jsTa['jobDate']);
                         $jobDate = date("m/d/Y", $date);
@@ -104,7 +105,16 @@ try {
 
                         echo "<a href='jstaReport.php?jsaTaskId=" .$jsTa['jsaTaskId'] ."' target='_blank'>" .$jobDate ." - " .$user['firstName'] ." " .$user['lastName'] ." - " .$jsTa['customer'] ."</a><br>";
                     } ?>
+
+                    <h2 style="margin: 20px 0 10px 0;">Vehicle Reports - <?php echo $year; ?></h2>
+                    <?php foreach ($vehicleReports as $vr) {
+                        $date = strtotime($vr['reportDate']);
+                        $reportDate = date("m/d/Y", $date);
+                        $user = getAsc ($dbconn, $vr['userId']);
+                        echo "<a href='vehicleReport.php?vehicleReportId=" .$vr['vehicleReportId'] ."' target='_blank'>" .$reportDate ." - " .$user['firstName'] ." " .$user['lastName'] ." - " .$vr['vehicleNo'] ."</a><br>";
+                    } ?>
                 <?php } ?>
+
             </div><!--end mbr1content-->
         </div><!--end mbodyright-->
         <?php include_once "includes/inc.shlinks.php"; ?>

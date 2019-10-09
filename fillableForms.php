@@ -49,8 +49,8 @@
             <div id="mbr1content">
                 <h1>Forms</h1><br/>
                 <h4>Click on the form that you need.</h4><br/><br/>
-                <a href="jsaForm.php" class="wrapLink" title="Job Safety Analysis Form">Job Safety Analysis Form</a><br/><br/>
-                <a href="jstaForm.php" class="wrapLink" title="Job Safety Task Analysis Form">Job Safety Task Analysis Form</a><br/><br/>
+                <a href="jsaForm.php" class="wrapLink" title="Job Safety Analysis Form">Job Safety Analysis Form (JSW - PW)</a><br/><br/>
+                <a href="jstaForm.php" class="wrapLink" title="Job Safety Task Analysis Form">Job Safety Analysis Form (JSA - M&S Engineering)</a><br/><br/>
                 <a href="vehicleForm.php" class="wrapLink" title="Vehicle Report Form">Vehicle Report Form</a><br/><br/>
                 <?php if (isset($_SESSION['permissionLevel'])) {
                     if ($_SESSION['permissionLevel'] == 'adm') {

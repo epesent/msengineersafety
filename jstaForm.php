@@ -34,6 +34,7 @@ try {
         if (!empty($_POST['chemical'])) {$chemical = $_POST['chemical'];} else {$chemical = 0;}
         if (!empty($_POST['congestedArea'])) {$congestedArea = $_POST['congestedArea'];} else {$congestedArea = 0;}
         if (!empty($_POST['othersInArea'])) {$othersInArea = $_POST['othersInArea'];} else {$othersInArea = 0;}
+        $additionalHazards = mysqli_real_escape_string($dbconn, trim($_POST['additionalHazards']));
         if (!empty($_POST['hardHat'])) {$hardHat = $_POST['hardHat'];} else {$hardHat = 0;}
         if (!empty($_POST['frc'])) {$frc = $_POST['frc'];} else {$frc = 0;}
         if (!empty($_POST['safetyGlasses'])) {$safetyGlasses = $_POST['safetyGlasses'];} else {$safetyGlasses = 0;}
@@ -72,13 +73,13 @@ try {
 
         //insert to db
         $sqlInsert= "INSERT INTO jsaTaskAnalysis (divisionId, userId, jobDate, customer, jobNo, crewLeader, currentWeather, scopeOfWork, permitRequired, permitType, fire, noise, energizedCircuits, 
-                    electrical, weather, minimumDistance, mechanical, slips_trips_falls, lead, chemical, congestedArea, othersInArea, hardHat, frc, safetyGlasses, safetyToeShoes, monogoggles, 
+                    electrical, weather, minimumDistance, mechanical, slips_trips_falls, lead, chemical, congestedArea, othersInArea, additionalHazards, hardHat, frc, safetyGlasses, safetyToeShoes, monogoggles, 
                     safetyHarness, faceShields, hotStick, hearingProtection, grounds, fireExtinguisher, rubberGloves, barricades_signs, workGloves, safetyVest, shirtTuckedIn, noStains, 
                     noTears_holes_frayedEdges, noContactWithBleach, noContactWithDEET, inspectionOfTools, housekeeping, medicalServices, attendeeName1, attendeeName2, attendeeName3, attendeeName4, 
                     attendeeName5, attendeeName6, attendeeName7, attendeeName8, attendeeName9, attendeeName10, attendeeName11, attendeeName12) VALUES ('$divisionId', '$userId', NULLIF ('$jobDate', ''), 
                     NULLIF ('$customer', ''), NULLIF ('$jobNo', ''), NULLIF ('$crewLeader', ''), NULLIF ('$currentWeather', ''), NULLIF ('$scopeOfWork', ''), '$permitRequired', NULLIF ('$permitType', ''),
                     '$fire', '$noise', '$energizedCircuits', '$electrical', '$weather', '$minimumDistance', '$mechanical', '$slips_trips_falls', '$lead', '$chemical', '$congestedArea', '$othersInArea', 
-                    '$hardHat', '$frc', '$safetyGlasses', '$safetyToeShoes', '$monogoggles', '$safetyHarness', '$faceShields', '$hotStick', '$hearingProtection', '$grounds', '$fireExtinguisher', 
+                    NULLIF ('$additionalHazards', ''), '$hardHat', '$frc', '$safetyGlasses', '$safetyToeShoes', '$monogoggles', '$safetyHarness', '$faceShields', '$hotStick', '$hearingProtection', '$grounds', '$fireExtinguisher', 
                     '$rubberGloves', '$barricades_signs', '$workGloves', '$safetyVest', '$shirtTuckedIn', '$noStains', '$noTears_holes_frayedEdges', '$noContactWithBleach', '$noContactWithDEET', 
                     NULLIF ('$inspectionOfTools', ''), NULLIF ('$housekeeping', ''), NULLIF ('$medicalServices', ''), NULLIF ('$attendeeName1', ''), NULLIF ('$attendeeName2', ''), 
                     NULLIF ('$attendeeName3', ''), NULLIF ('$attendeeName4', ''), NULLIF ('$attendeeName5', ''), NULLIF ('$attendeeName6', ''), NULLIF ('$attendeeName7', ''), NULLIF ('$attendeeName8', ''), 
@@ -290,6 +291,10 @@ try {
                             </div>
                         </div>
                     </div><!--end form row-->
+                    <div>
+                        <label for="additionalHazards" class="form-control-label">Additional Hazards (Please specify):</label>
+                        <input id="additionalHazards" name="additionalHazards" type="text" class="form-control"/>
+                    </div>
                 </div><!--end form group job hazards-->
 
                 <div class="row mt-md-4">
@@ -459,7 +464,7 @@ try {
                     </div><!--end form row-->
                 </div><!--end form group ppse-->
                 <div id="comments" class="form-group">
-                    <label for="inspectionOfTools" class="form-control-label">Inspection of Tools and Other Equipment to be used"</label>
+                    <label for="inspectionOfTools" class="form-control-label">Inspection of Tools and Other Equipment to be used:</label>
                     <input id="inspectionOfTools" name="inspectionOfTools" type="text" class="form-control"/>
                     <label for="housekeeping" class="form-control-label mt-2">Housekeeping:</label>
                     <textarea rows="2" cols="10" id="housekeeping" name="housekeeping" class="form-control"></textarea>

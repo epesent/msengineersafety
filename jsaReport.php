@@ -8,9 +8,6 @@
         $jsaId = $_GET['jsaId'];
     }
 
-
-    $jsaId = 8;
-
     require_once 'connectdb.php';
     $jsa = getJSARep ($dbconn, $jsaId);
     $userId = $jsa['userId'];
@@ -70,22 +67,7 @@
 
 
     </style>
-    <script>
-        function disableSubmit() {
-            document.getElementById("submit").disabled = true;
-        }
 
-        function activateButton(element) {
-
-            if(element.checked) {
-                document.getElementById("submit").disabled = false;
-            }
-            else  {
-                document.getElementById("submit").disabled = true;
-            }
-
-        }
-    </script>
 
 </head>
 <body onload="disableSubmit()">
@@ -95,7 +77,6 @@
                 <span>M&S ENGINEERING</span>
             </div>
             <div class="col-md-4"><span>Safety and Compliance Database</span></div>
-            <div class="col-md-2 text-md-center"><a href="javascript:history.back()" class="nav-item nav-link shl" title="LOG OUT" id="logOut">Go Back</a></div>
             <div class="col-md-2 text-md-center"><a href="index.php?logout=yes" class="nav-item nav-link shl" title="LOG OUT" id="logOut">Log Out</a></div>
         </div><!--end Row-->
     </div>

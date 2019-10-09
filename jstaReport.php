@@ -58,32 +58,15 @@
             }
         }
     </style>
-    <script>
-        function disableSubmit() {
-            document.getElementById("submit").disabled = true;
-        }
-
-        function activateButton(element) {
-
-            if(element.checked) {
-                document.getElementById("submit").disabled = false;
-            }
-            else  {
-                document.getElementById("submit").disabled = true;
-            }
-
-        }
-    </script>
 
 </head>
-<body onload="disableSubmit()">
+<body>
     <div id="topbannerForms" class="container-fluid text-white" style="font-family: Georgia, Times New Roman, Times, serif;">
         <div class="row pt-3 pb-3 align-items-end">
             <div class="col-md-4">
                 <span>M&S ENGINEERING</span>
             </div>
             <div class="col-md-4"><span>Safety and Compliance Database</span></div>
-            <div class="col-md-2 text-md-center"><a href="javascript:history.back()" class="nav-item nav-link shl" title="LOG OUT" id="logOut">Go Back</a></div>
             <div class="col-md-2 text-md-center"><a href="index.php?logout=yes" class="nav-item nav-link shl" title="LOG OUT" id="logOut">Log Out</a></div>
         </div><!--end Row-->
     </div>
@@ -100,8 +83,12 @@
 
             <div id="generalInfo" class="form-group">
                 <div class="row">
+                    <?php
+                    $pDate = new DateTime($jsaT['jobDate']) ;
+                    $date = $pDate->format('m/d/Y');
+                    ?>
                     <div class="col-md-1  ml-md-5">Date:</div>
-                    <div class="col-md-2"><?php echo $jsaT['jobDate']; ?></div>
+                    <div class="col-md-2"><?php echo $date; ?></div>
                     <div class="col-md-2">Customer:</div>
                     <div class="col-md-3"><?php echo $jsaT['customer']; ?></div>
                     <div class="col-md-1">Job No.:</div>
@@ -230,6 +217,12 @@
                         </div>
                     </div>
                 </div><!--end row-->
+                <div class="row">
+                    <div class="col-md-5 ml-md-5">Additional Hazards:</div>
+                </div><!--end row--->
+                <div class="row">
+                    <div class="col-md-10 ml-md-5"><?php echo $jsaT['additionalHazards'];  ?></div>
+                </div><!--end row--->
             </div><!--end group job hazards-->
 
             <div class="row mt-md-4">
@@ -417,19 +410,19 @@
                     <div class="col-md-5 ml-md-5">Inspection of Tools and Other Equipment to be used:</div>
                 </div><!--end row--->
                 <div class="row">
-                    <div class="col-md-10 ml-md-5"><?php echo $jsaT['inspectionOfTools'];  ?>></div>
+                    <div class="col-md-10 ml-md-5"><?php echo $jsaT['inspectionOfTools'];  ?></div>
                 </div><!--end row--->
                 <div class="row">
                     <div class="col-md-5 ml-md-5">Housekeeping:</div>
                 </div><!--end row--->
                 <div class="row">
-                    <div class="col-md-10 ml-md-5"><?php echo $jsaT['housekeeping'];  ?>></div>
+                    <div class="col-md-10 ml-md-5"><?php echo $jsaT['housekeeping'];  ?></div>
                 </div><!--end row--->
                 <div class="row">
                     <div class="col-md-7 ml-md-5">Medical Services, First Aid and Emergency, Fire and Evacuation Procedures:</div>
                 </div><!--end row--->
                 <div class="row">
-                    <div class="col-md-10 ml-md-5"><?php echo $jsaT['medicalServices'];  ?>></div>
+                    <div class="col-md-10 ml-md-5"><?php echo $jsaT['medicalServices'];  ?></div>
                 </div><!--end row--->
             </div><!--end group-->
 

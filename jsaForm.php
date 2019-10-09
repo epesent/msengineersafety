@@ -208,13 +208,13 @@ try {
 
         $dbconn->query($sqlInsert);
 //
-//        if ($_SESSION['permissionLevel'] == 'mgr') {
-//            header("location: dashboarddivmgr.php");
-//        } elseif ($_SESSION['permissionLevel'] == 'asc') {
-//            header("location: associate.php");
-//        } else {
-//            header("location: dashboardadmin.php");
-//        }
+        if ($_SESSION['permissionLevel'] == 'mgr') {
+            header("location: dashboarddivmgr.php");
+        } elseif ($_SESSION['permissionLevel'] == 'asc') {
+            header("location: associate.php");
+        } else {
+            header("location: dashboardadmin.php");
+        }
     }
 
 } catch (Exception $e) {

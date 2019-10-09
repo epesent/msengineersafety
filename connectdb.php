@@ -286,6 +286,13 @@ function getJSATRep ($dbconn, $jsaTaskId) {
     $jsaT = mysqli_fetch_assoc($result);
     return $jsaT;
 }
+//get specific vehicle report
+function getVehicleReport ($dbconn, $vehicleReportId) {
+    $sqlVR = "SELECT * FROM vehicleReport WHERE vehicleReportId = $vehicleReportId";
+    $result = $dbconn->query($sqlVR);
+    $VR = mysqli_fetch_assoc($result);
+    return $VR;
+}
 //get all jsa reports by division by year
 function getDivJsaReports ($dbconn, $divisionId, $year) {
     $sqlDJR = "SELECT * FROM jobSafetyAnalysis WHERE divisionId = $divisionId AND YEAR(jobDate) = $year ORDER BY jobDate ASC, userId";
@@ -296,5 +303,11 @@ function getDivJsaReports ($dbconn, $divisionId, $year) {
 function getDivJsaTReports ($dbconn, $divisionId, $year) {
     $sqlDJTR = "SELECT * FROM jsaTaskAnalysis WHERE divisionId = $divisionId AND YEAR(jobDate) = $year ORDER BY jobDate ASC, userId";
     $result = $dbconn->query($sqlDJTR);
+    return $result;
+}
+//get all vehicle reports by division by year
+function getDivVehReports ($dbconn, $divisionId, $year) {
+    $sqlDVR = "SELECT * FROM vehicleReport WHERE divisionId = $divisionId AND YEAR(reportDate) = $year ORDER BY reportDate ASC, userId";
+    $result = $dbconn->query($sqlDVR);
     return $result;
 }

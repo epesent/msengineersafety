@@ -95,7 +95,7 @@
                 <h3>Associate Name: <?php echo $assoc['firstName'] ." " .$assoc['lastName'];?>&nbsp;&nbsp;&nbsp;
                     ID#: <?php echo $assoc['last4SSN']; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="admindivision.php?divisionId=<?php echo $divisionId; ?>" class="wrapLink">Back to Division</a> <br/>
-                    Assigned Division: <?php echo $division['divisionName'];?></h3>
+                    Assigned Division: <?php echo $division['divisionName'];?> &nbsp;&nbsp;&nbsp;Associate Email:&nbsp;&nbsp;<?php echo $assoc['userEmail']; ?></h3>
                     <a href='editAssoc.php?assocId=<?php echo $assocId; ?>&divisionId=<?php echo $divisionId; ?>' class="wrapLink dialOpen">Update/Delete</a>
                 <p>&nbsp;</p>
                 <h2>Associate Qualifications</h2>

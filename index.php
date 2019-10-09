@@ -98,7 +98,7 @@ try {
             <p>Safety and Compliance Database</p>
             <footer>
                 <a class="btn inverse" href="login.php">Login</a>
-                <a class="btn inverse" href="download.php">Download Forms</a>
+<!--                <a class="btn inverse" href="download.php">Download Forms</a>-->
             </footer>
         </article>
         <div class="clear"></div>

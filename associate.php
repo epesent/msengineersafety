@@ -68,7 +68,7 @@ try {
             <div id="mbr1content">
                 <h3>Associate Name: <?php echo $assoc['firstName'] ." " .$assoc['lastName'];?>&nbsp;&nbsp;&nbsp;
                     ID#: <?php echo $assoc['last4SSN']; ?><br/>
-                    Assigned Division: <?php echo $division['divisionName'];?></h3>
+                    Assigned Division: <?php echo $division['divisionName'];?>&nbsp;&nbsp;&nbsp;Associate Email:&nbsp;&nbsp;<?php echo $assoc['userEmail']; ?></h3>
                 <p>&nbsp;</p>
                 <h2>Associate Qualifications</h2>
                 <table width="80%" border="0">
