@@ -112,10 +112,14 @@
 //                           format dates
                             $qualDate = strtotime($rowQ['qualDate']);
                             $formatqualDate = date('m/d/Y', $qualDate);
-//                            $dueDate = strtotime($rowQ['dueDate']);
-                            $dueDate = strtotime(date("Y-m-d", strtotime($rowQ['qualDate'])) ." +".$rowQ['qualRequireInterval'] ." months");
+                            if ($rowQ['qualRequireInterval'] === '100') {
+                                $formatdueDate = 'N\A';
+                            } else {
+                                $dueDate = strtotime($rowQ['dueDate']);
+                                $dueDate = strtotime(date("Y-m-d", strtotime($rowQ['qualDate'])) ." +".$rowQ['qualRequireInterval'] ." months");
 //                            $formatdueDate = date('m/d/Y', $dueDate);
-                            $formatdueDate = date('m/d/Y', $dueDate);
+                                $formatdueDate = date('m/d/Y', $dueDate);
+                            }
                             $testDD = date('Y-m-d', $dueDate);
 //                            echo $rowQ['dueDate'] ." test". $testDD;
                             $recordQualId = $rowQ['recordQualId'];
@@ -133,11 +137,14 @@
                                 <td><?php echo $formatqualDate; ?></td>
                                 <?php
                                 $linitDate = date('Y-m-d', strtotime("+30 days"));
-                                if(strtotime($testDD) < strtotime($linitDate)) { ?>
+                                If ($rowQ['qualRequireInterval'] === 100) {
+                                    echo 'N\A';
+                                } elseif  (strtotime($testDD) < strtotime($linitDate)) { ?>
                                     <td class="error"><?php echo $formatdueDate; ?></td>
                                 <?php } else { ?>
                                     <td><?php echo $formatdueDate; ?></td>
                                 <?php } ?>
+
                                 <td><a href='editAscQual.php?recordQualId=<?php echo $rowQ['recordQualId']; ?>' class="wrapLink dialOpen">Update/Delete</a></td>
                             </tr>
                     <?php    } ?>

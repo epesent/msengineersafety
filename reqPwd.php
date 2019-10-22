@@ -68,7 +68,7 @@ try {
         <div id="mbodyright1">
             <div id="mbr1content">
                 <h2 align="center">Reset Your Password</h2><br/>
-                <h3 align="center">A link will be sent to <?php echo $userEmail; ?>.<br/> Please click on the link and reset your password.  The link will only be valid for 2 hours.</h3><br/><br/>
+                <h3 align="center">A link will be sent to <?php echo $userEmail; ?>.<br/>   The link will only be valid for 2 hours.<br><span style="color: red">Please click on the submit button to reset your password.</span></h3><br/><br/>
                 <form action="" method="post" style="width: 50%; margin: 0 auto 0 auto;">
                     <input type="submit" id="submit" name="submit" class="btn" value="Submit"/><br/>
                     <input type="button" id="cancel" name="cancel" class="btn" value="Cancel" onclick="window.history.go(-1); return false;"/>
