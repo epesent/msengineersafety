@@ -29,8 +29,8 @@ try {
                     } else {  //User logged in previously but using default password again
                         echo "<script>
                             var x;
-                            if (confirm('Your password does not match would you like to reset it.') == true) {
-                                window.location.href = 'reqPwd.php?userEmail=$userEmail'
+                            if (confirm('Your entry does not match the number we have in our system. Please contact the office.') == true) {
+//                                window.location.href = 'index.php'
                             }
                        </script>";
                     }
@@ -39,8 +39,8 @@ try {
                     if ($userPassword !== $user['userPassword']) {
                         echo "<script>
                             var x;
-                            if (confirm('Your password does not match would you like to reset it.') == true) {
-                                window.location.href = 'reqPwd.php?userEmail=$userEmail'
+                            if (confirm('Your entry does not match the number we have in our system. Please contact the office.') == true) {
+//                                window.location.href = 'index.php'
                             }
                        </script>";
                     } else { //email and password correct
@@ -90,7 +90,7 @@ try {
                         }
                         ?>
                     </span><br/><br/>
-            <input type="password" id="userPassword" name="userPassword" placeholder="Password" required="required"/>
+            <input type="text" id="userPassword" name="userPassword" placeholder="Last 4 of SS#" required="required"/>
             <span class="error" style="font-size: 10px; font-style: italic;">
                         <?php
                         if ($_POST && isset($errors['userPassword'])) {
@@ -100,8 +100,9 @@ try {
                     </span><br/><br/>
             <input type="submit" id="submit" name="submit" class="btn" value="Log In"/>
             <div style="height: 5px;">&nbsp;</div><!--end spacer-->
-            <a href="forgotPass.php" class="sub" style="font-style: italic; font-size: 10px;">Forgot Password?</a><br/>
+<!--            <a href="forgotPass.php" class="sub" style="font-style: italic; font-size: 10px;">Forgot Password?</a><br/>-->
         </form><br/>
+        <a href="https://desk.zoho.com/portal/texasnetworkgroup" target="_blank"><span style="color: red">Click here to submit a help desk request.</span></a>
 
     </div><!--end mblcontentI-->
 </div><!--end mbodyleftI-->
