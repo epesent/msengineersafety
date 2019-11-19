@@ -45,7 +45,7 @@ try {
             $userEmail = mysqli_real_escape_string($dbconn, trim($_POST['userEmail']));
             $last4ssn = mysqli_real_escape_string($dbconn, trim($_POST['last4ssn']));
             //create new associate user
-            $sqlInsertU = "INSERT INTO users (userEmail, userPassword, permissionLevel) VALUES ('$userEmail', 'safety', 'asc')";
+            $sqlInsertU = "INSERT INTO users (userEmail, userPassword, permissionLevel) VALUES ('$userEmail', '$last4ssn', 'asc')";
             $dbconn->query($sqlInsertU);
             //Get last inserted Id
             $assocId = mysqli_insert_id($dbconn);

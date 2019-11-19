@@ -10,6 +10,8 @@
     require_once 'connectdb.php';
     $assoc = getAsc ($dbconn, $userId);
     $divisionId = $assoc['divisionId'];
+    $divName = getDivisonSingle ($dbconn, $divisionId);
+    $divisionName = $divName['divisionName'];
 
 try {
     if (isset($_POST['submit'])) {
@@ -57,7 +59,7 @@ try {
         //email notice to NLutz
         $associateName = $assoc['firstName'] ." " .$assoc['lastName'];
         $subject = 'New Vehicle Report';
-        $message = "$associateName with Division $divisionId just filled out vehicle a vehicle report. \n".
+        $message = "$associateName with Division $divisionName just filled out vehicle a vehicle report. \n".
                     "Please login to the safety database to see the report";
         $to = 'nlutz@msengr.com, stevesmith@epesent.com';
         mail($to, $subject, $message);

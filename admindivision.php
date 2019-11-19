@@ -120,7 +120,7 @@
                         ?>
                     </span><br/><br/>
                     <input type="submit" id="addasc" name="addasc" class="btn3" value="Add Associate"/><br/>
-                    <h4><em>The associate's default password will be 'safety' (case sensitive)</em></h4>
+
                 </form><br/><br/>
                 <h3>Current Assigned Sub-Contractors</h3><br/>
                 <?php

@@ -35,7 +35,7 @@ try {
                        </script>";
                     }
                 } else {  //email correct; password incorrect
-                    $userPassword = md5(trim($_POST['userPassword']));
+                    $userPassword = (trim($_POST['userPassword']));
                     if ($userPassword !== $user['userPassword']) {
                         echo "<script>
                             var x;
@@ -90,7 +90,7 @@ try {
                         }
                         ?>
                     </span><br/><br/>
-            <input type="text" id="userPassword" name="userPassword" placeholder="Last 4 of SS#" required="required"/>
+            <input type="text" id="userPassword" name="userPassword" placeholder="Password" required="required"/>
             <span class="error" style="font-size: 10px; font-style: italic;">
                         <?php
                         if ($_POST && isset($errors['userPassword'])) {

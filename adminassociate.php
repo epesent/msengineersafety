@@ -99,6 +99,7 @@
                     <a href='editAssoc.php?assocId=<?php echo $assocId; ?>&divisionId=<?php echo $divisionId; ?>' class="wrapLink dialOpen">Update/Delete</a>
                 <p>&nbsp;</p>
                 <h2>Associate Qualifications</h2>
+                <button id="addQualification" class="btn3">Add Qualification</button><br/><br/>
                 <table width="100%" border="0">
                     <tr>
                         <th>Qualification</th>
@@ -148,8 +149,8 @@
                                 <td><a href='editAscQual.php?recordQualId=<?php echo $rowQ['recordQualId']; ?>' class="wrapLink dialOpen">Update/Delete</a></td>
                             </tr>
                     <?php    } ?>
-                </table><br/>
-                <button id="addQualification" class="btn3">Add Qualification</button><br/><br/>
+                </table><br/><br/>
+
                 <div style="height: 40px; border-top: solid 2px #000000"></div><!--spacer-->
                 <h2>Equipment Issued</h2><br/>
 

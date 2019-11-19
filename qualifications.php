@@ -39,7 +39,8 @@
         <?php include_once "includes/inc.adminnav.php"; ?>
         <div id="mbodyright1">
             <div id="mbr1content">
-                <h2>Current Available Qualifications</h2><br/>
+                <h2>Current Available Qualifications</h2>
+                <button id="addQualification" class="btn3">Add Qualification</button><br/><br>
                 <table width="100%" border="0">
                     <tr>
                         <th>Qualification</th>
@@ -59,7 +60,7 @@
                         </tr>
                     <?php    } ?>
                 </table><br/>
-                <button id="addQualification" class="btn3">Add Qualification</button>
+<!--                <button id="addQualification" class="btn3">Add Qualification</button>-->
             </div><!--end mbr1content-->
             <div style="height: 20px;">&nbsp;</div><!--spacer-->
         </div><!--end mbodyright1-->

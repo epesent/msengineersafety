@@ -97,7 +97,7 @@ function getCertLink ($dbconn, $recordQualId) {
 }
 //get all qualifications
 function getQualifications ($dbconn) {
-    $sqlQual = "SELECT * FROM qualifications ORDER BY qualAbbreviation ASC";
+    $sqlQual = "SELECT * FROM qualifications ORDER BY qualName ASC";
     $result = $dbconn->query($sqlQual);
     return $result;
 }

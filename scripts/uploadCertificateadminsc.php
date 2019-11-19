@@ -20,7 +20,7 @@ try {
             } else {
                 //upload file section
                 $target_path = "uploads/";
-                $target_pathU = $target_path .$assocId .'-' .$divisionId .'-' .$qualificationId .date('Y-m-d h:i:sa') .basename( $_FILES['fileLocation']['name']) ;
+                $target_pathU = $target_path .$assocId .'-' .$divisionId .'-' .$qualificationId .'-' .date('Y-m-d h:i:sa') .basename( $_FILES['fileLocation']['name']) ;
 
                 if(move_uploaded_file($_FILES['fileLocation']['tmp_name'], $target_pathU)) {
                     $url = $target_pathU;
