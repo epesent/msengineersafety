@@ -291,7 +291,7 @@ try {
     <div class="bg-light pb-5">
         <div class="container-fluid">
             <div class="row justify-content-center pt-2 pt-md-5 mb-md-3">
-                <div class="col-md-5 text-center"><h4>M&S Power Services<br>Job Safety Analysis</h4></div>
+                <div class="col-md-5 text-center"><h4>M&S Power Services<br>Job Safety Analysis<br>Sherwood Surveying & S.U.E</h4></div>
             </div><!--end row-->
             <form action="" method="post">
                 <div id="generalInfo" class="form-group">
